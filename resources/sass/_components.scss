@@ -1,0 +1,86 @@
+.mm-button {
+    border: 1px solid;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+.bg-none-button {
+    color: black;
+    border-color: $theme-color;
+    background: #fff;
+}
+.bg-none-button:hover {
+    background: $theme-color;
+    color: #fff;
+    transition: 0.2s;
+}
+.bg-theme-button {
+    border-color: #fff;
+    color: #fff;
+    background: $theme-color;
+}
+.bg-theme-button:hover {
+    text-decoration: none;
+    color: #fff;
+}
+.bg-cart-button {
+    border-color: $theme-color;
+    color: $theme-color;
+}
+.bg-cart-button:hover {
+    text-decoration: none;
+    color: $theme-color;
+}
+.hr-theme {
+    background: $theme-color;
+    width: 9%;
+    border-width: 4px;
+    color: $theme-color;
+}
+
+.mm-color-text {
+    color: $theme-color;
+}
+.mm-text-bold {
+    font-weight: bold;
+}
+.mm-text-bolder {
+    font-weight: bolder;
+}
+.mm-text-14 {
+    font-size: 14px;
+}
+.mm-text-15 {
+    font-size: 15px;
+}
+.mm-text-16 {
+    font-size: 16px;
+}
+.mm-text-17 {
+    font-size: 17px;
+}
+.mm-text-18 {
+    font-size: 18px;
+}
+.mm-text-19 {
+    font-size: 19px;
+}
+.mm-text-20 {
+    font-size: 20px;
+}
+.mm-text-21 {
+    font-size: 21px;
+}
+.mm-text-22 {
+    font-size: 22px;
+}
+.mm-text-23 {
+    font-size: 23px;
+}
+.mm-text-24 {
+    font-size: 24px;
+}
+.mm-text-25 {
+    font-size: 25px;
+}
+

@@ -1,0 +1,109 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+// Components
+@import 'components';
+
+body {
+    #app {
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        min-height: 100vh;
+        .authentication {
+            flex: 1;
+            padding-top: 100px;
+        }
+        .body-segment {
+            flex: 1;
+            padding-top: 30px;
+        }
+        header {
+            padding: 10px 0px;
+            box-shadow: 4px 4px 9px rgba(220, 205, 205, 0.25);
+            .menu-box {
+                .cart-button {
+                    display: flex;
+                    align-items: center;
+                    i {
+                        font-size: 17px;
+                    }
+                    .cart-quantity {
+                        background: #E93F33;
+                        padding: 0px 5px 0px 5px;
+                        color: #fff;
+                        border-radius: 50%;
+                        margin-top: -10px;
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+        #hero {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            flex: 1;
+            .hero-text-box {
+                .hero-cat-select {
+                    height: 50px;
+                    border-color:$theme-color;
+                }
+                .hero-main-text {
+                    color: $theme-color;
+                    text-transform: uppercase;
+                }
+            }
+        }
+        #categories {
+        .item-card-row {
+            .card {
+                .card-img-top {
+                    object-fit: cover;
+                    height: 200px;
+                }
+            }
+        }
+        }
+        footer {
+            background:$theme-color;
+            color: #fff;
+            padding: 10px 0px 10px 0px;
+            span {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .copyright {
+                text-align: center;
+                @media only screen and (max-width:724px) {
+                    text-align: left;
+                }
+            }
+            .social-media-box {
+                text-align: right;
+
+                @media only screen and (max-width:724px) {
+                    text-align: left;
+                }
+                div {
+                    a {
+                        color: #fff;
+                        font-size: 18px;
+                        margin: 0 10px 0 10px;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
