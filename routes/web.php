@@ -18,6 +18,24 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::get('/categories', 'PagesController@categories')->name('categories');
     Route::get('/cart', 'CartController@index')->name('carts.index');
 });
+Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => 'auth'], function () {
+    Route::get('/cart', 'CartController@index')->name('carts.index');
+    Route::get('/cart-count', 'CartController@cartCount')->name('carts.count');
+    Route::post('/add-cart', 'CartController@addToCart')->name('carts.add');
+    Route::post('/remove-cart', 'CartController@removeFromCart')->name('carts.remove');
+    Route::post('/change-cart-quantity', 'CartController@changeQuantity')->name('carts.changeQuantity');
+    Route::post('/order', 'CartController@order')->name('carts.order');
+    Route::get('/order-success', 'CartController@success')->name('carts.success');
+    Route::get('/order-failed', function () {
+        return "Order Payment Failed";
+    });
+
+    // User Addresses
+    Route::resource('addresses', 'AddressController');
+});
+
+
+
 // Authentication Routes...
 Route::get('login', [
     'as' => 'login',
@@ -60,6 +78,58 @@ Route::post('register', [
     'uses' => 'Auth\RegisterController@register'
 ]);
 
-Auth::routes();
+// Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['auth']], function () {
+    Route::resource('online-orders', 'OnlineOrderController');
+});
+
+Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['is_admin']], function () {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+    // Permissions
+    Route::resource('permissions', 'PermissionsController');
+
+    // Roles
+    Route::resource('roles', 'RolesController');
+
+    // Users
+    Route::resource('users', 'UsersController');
+
+    // Users
+    Route::resource('restaurants', 'RestaurantsController');
+
+    // Units
+    Route::resource('units', 'UnitsController');
+
+    // Item Categories
+    Route::resource('item-categories', 'ItemCategoriesController');
+
+    // Items
+    Route::resource('items', 'ItemsController');
+
+    // Online Orders
+    Route::resource('online-orders', 'OnlineOrdersController');
+});
+
+Route::group(['as' => 'restaurants.', 'prefix' => 'restaurants', 'namespace' => 'Restaurants', 'middleware' => ['is_restaurant']], function () {
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+    // Units
+    Route::resource('units', 'UnitsController');
+
+    // Item Categories
+    Route::resource('item-categories', 'ItemCategoriesController');
+
+    // Items
+    Route::resource('items', 'ItemsController');
+
+    // Online Orders
+    Route::resource('online-orders', 'OnlineOrdersController');
+
+    // Reports
+    Route::get('/reports', 'ReportsController@index')->name('reports.index');
+});

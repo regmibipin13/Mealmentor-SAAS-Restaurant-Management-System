@@ -14,17 +14,23 @@
                      </a>
 
                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                         <a class="dropdown-item" href="#">
-                             {{ __('Dashboard') }}
-                         </a>
-                         @if (!auth()->user()->is_admin_side)
-                             <a class="dropdown-item" href="{{ route('frontend.carts.index') }}">
-                                 {{ __('My Carts') }}
+                         @if (auth()->user()->user_type == App\Models\User::USER_TYPE['admin'])
+                             <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                 {{ __('Dashboard') }}
                              </a>
-                             <a class="dropdown-item" href="#">
+                         @elseif (auth()->user()->user_type == App\Models\User::USER_TYPE['restaurant_owner'])
+                             <a class="dropdown-item" href="{{ route('restaurants.dashboard') }}">
+                                 {{ __('Dashboard') }}
+                             </a>
+                         @endif
+                         @if (auth()->user()->user_type == App\Models\User::USER_TYPE['customer'])
+                             <a class="dropdown-item" href="{{ route('home') }}">
+                                 {{ __('Dashboard') }}
+                             </a>
+                             <a class="dropdown-item" href="{{ route('frontend.online-orders.index') }}">
                                  {{ __('My Orders') }}
                              </a>
-                             <a class="dropdown-item" href="#">
+                             <a class="dropdown-item" href="{{ route('frontend.addresses.index') }}">
                                  {{ __('My Addresses') }}
                              </a>
                          @endif
@@ -38,15 +44,26 @@
                              @csrf
                          </form>
                      </div>
+                     @if (auth()->user()->user_type == App\Models\User::USER_TYPE['customer'])
+                         <a href="{{ route('frontend.carts.index') }}" class="mm-button bg-cart-button cart-button">
+                             <i class="fa-solid fa-heart"></i>
+                             {{-- <span class="cart-quantity">1</span> --}}
+                         </a>
+                         <a href="{{ route('frontend.carts.index') }}" class="mm-button bg-cart-button cart-button">
+                             <i class="fa-solid fa-cart-shopping"></i>
+                             {{-- <span class="cart-quantity" v-cloak>@{{ cartCount }}</span> --}}
+                         </a>
+                     @endif
                  @else
                      <a href="{{ route('login') }}" class="mm-button bg-none-button">Login</a>
                      <a href="{{ route('register') }}" class="mm-button bg-theme-button">Register</a>
                      <a href="{{ route('frontend.carts.index') }}" class="mm-button bg-cart-button cart-button">
                          <i class="fa-solid fa-cart-shopping"></i>
                          <span class="cart-quantity">1</span>
-                     @endauth
+                     </a>
+                 @endauth
 
-                 </a>
+
              </div>
          </div>
      </div>

@@ -22,9 +22,9 @@
                                             value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                         @error('name')
-                                            <span class="invalid-feedback" role="alert">
+                                            <p class="text-danger">
                                                 <strong>{{ $message }}</strong>
-                                            </span>
+                                            </p>
                                         @enderror
                                     </div>
                                 </div>
@@ -39,9 +39,9 @@
                                             value="{{ old('email') }}" required autocomplete="email">
 
                                         @error('email')
-                                            <span class="invalid-feedback" role="alert">
+                                            <p class="text-danger">
                                                 <strong>{{ $message }}</strong>
-                                            </span>
+                                            </p>
                                         @enderror
                                     </div>
                                 </div>
@@ -54,9 +54,9 @@
                                         <input type="number" maxlength="10" minlength="10" class="form-control"
                                             placeholder="Enter 10 Digit Phone number" name="phone">
                                         @error('phone')
-                                            <span class="invalid-feedback" role="alert">
+                                            <p class="text-danger">
                                                 <strong>{{ $message }}</strong>
-                                            </span>
+                                            </p>
                                         @enderror
                                     </div>
                                 </div>
@@ -71,9 +71,9 @@
                                             required autocomplete="new-password">
 
                                         @error('password')
-                                            <span class="invalid-feedback" role="alert">
+                                            <p class="text-danger">
                                                 <strong>{{ $message }}</strong>
-                                            </span>
+                                            </p>
                                         @enderror
                                     </div>
                                 </div>
