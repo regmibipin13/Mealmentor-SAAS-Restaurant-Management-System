@@ -37,6 +37,10 @@ class Item extends Model implements HasMedia
     {
         return $query->where('item_category_id', $request->category);
     }
+    public function scopeMatchRestro($query, $restaurant_id)
+    {
+        return $query->where('restaurant_id', $restaurant_id);
+    }
     public function registerMediaConversions(Media $media = null): void
     {
         $this

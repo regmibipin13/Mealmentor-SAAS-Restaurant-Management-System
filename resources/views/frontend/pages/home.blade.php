@@ -8,9 +8,9 @@
                         <h1 class="hero-main-text">Cacao Grill Bar and Restaurant</h1>
                         <h3 class="text-secondary">So Fast, So Hot</h3>
                         <h4>Choose your favorite category and order right now !</h4>
-                        <select name="category" class="form-control hero-cat-select">
-                            <option value="">Select your Category</option>
-                            @foreach ($categories as $id => $name)
+                        <select name="restaurant_id" class="form-control hero-cat-select">
+                            <option value="">Select your Favorite Restaurant</option>
+                            @foreach ($restaurants as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>

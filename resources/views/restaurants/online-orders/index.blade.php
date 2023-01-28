@@ -7,9 +7,6 @@
                     <div class="card-header">
                         <form action="{{ route('restaurants.online-orders.index') }}" method="get">
                             <div class="row mb-2">
-                                {{-- <div class="col-md-2">
-                                    <a href="{{ route('restaurants.items.create') }}" class="btn btn-success">Add New</a>
-                                </div> --}}
 
                                 <div class="col-md-10 d-flex align-items-start justify-content-between filters-input">
                                     <input type="text" name="id" value="{{ request()->id }}" placeholder="Order Id"

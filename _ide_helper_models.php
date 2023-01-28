@@ -89,6 +89,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Item available()
  * @method static \Illuminate\Database\Eloquent\Builder|Item filters()
  * @method static \Illuminate\Database\Eloquent\Builder|Item matchCategory($request)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item matchRestro($restaurant_id)
  * @method static \Illuminate\Database\Eloquent\Builder|Item newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Item newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Item query()
@@ -312,6 +313,29 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereUpdatedAt($value)
  */
 	class Role extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Table
+ *
+ * @property int $id
+ * @property string $name
+ * @property int|null $restaurant_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Restaurant|null $restaurants
+ * @method static \Illuminate\Database\Eloquent\Builder|Table filters()
+ * @method static \Illuminate\Database\Eloquent\Builder|Table newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Table newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Table query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Table whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Table whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Table whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Table whereRestaurantId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Table whereUpdatedAt($value)
+ */
+	class Table extends \Eloquent {}
 }
 
 namespace App\Models{

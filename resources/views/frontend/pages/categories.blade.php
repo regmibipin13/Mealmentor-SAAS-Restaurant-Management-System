@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-md-12 d-flex align-items-center justify-content-between">
                     <a class="@if (request()->category == null) mm-button bg-theme-button @else btn btn-secondary @endif"
-                        href="{{ route('frontend.categories') }}">{{ __('All') }}</a>
+                        href="{{ route('frontend.categories') }}?restaurant_id={{ request()->restaurant_id }}">{{ __('All') }}</a>
                     @foreach ($categories as $id => $name)
                         <a class="@if (request()->category == $id) mm-button bg-theme-button @else btn btn-secondary @endif"
-                            href="{{ route('frontend.categories') }}?category={{ $id }}">{{ $name }}</a>
+                            href="{{ route('frontend.categories') }}?restaurant_id={{ request()->restaurant_id }}&category={{ $id }}">{{ $name }}</a>
                     @endforeach
                 </div>
             </div>

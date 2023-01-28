@@ -132,4 +132,7 @@ Route::group(['as' => 'restaurants.', 'prefix' => 'restaurants', 'namespace' => 
 
     // Reports
     Route::get('/reports', 'ReportsController@index')->name('reports.index');
+
+    // Tables
+    Route::resource('tables', 'TablesController');
 });
