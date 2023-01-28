@@ -35,8 +35,8 @@ class CartController extends Controller
             'quantity' => 'required',
             'price' => 'required',
         ]);
-        auth()->user()->addToCart($sanitized['item_id'], $sanitized['quantity'], $sanitized['price']);
-        return response()->json(['status' => 'success']);
+        return auth()->user()->addToCart($sanitized['item_id'], $sanitized['quantity'], $sanitized['price']);
+        // return response()->json(['status' => 'success']);
     }
 
     public function changeQuantity(Request $request)

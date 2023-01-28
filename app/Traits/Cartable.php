@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\Cart;
+use App\Models\Item;
 
 trait Cartable
 {
@@ -29,11 +30,15 @@ trait Cartable
     public function addToCart($itemId, $qty = 1, $price = 0)
     {
         if ($this->cart()->exists()) {
-
+            if ($this->cart->items->first()->restaurant_id !== Item::find($itemId)->restaurant_id) {
+                return response()->json(['status' => 'error', 'message' => 'You cannot add items from multiple restaurants']);
+            }
             if ($this->cart->items()->where('item_id', $itemId)->first() !== null) {
                 $this->changeQuantity($itemId, $qty);
+                return response()->json(['status' => 'error', 'message' => 'Item Already Exist in Cart']);
             } else {
                 $this->updateItemsToCart($itemId, $price, $qty);
+                return response()->json(['status' => 'success', 'message' => 'Item Added in Cart']);
             }
         } else {
             $cart = Cart::create([
@@ -42,6 +47,8 @@ trait Cartable
             ]);
 
             $cart->items()->sync([$itemId => ['price' => $price, 'quantity' => $qty]]);
+
+            return response()->json(['status' => 'success', 'message' => 'Item Added in Cart']);
         }
     }
 

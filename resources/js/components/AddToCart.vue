@@ -32,9 +32,18 @@ export default {
                 quantity:1,
             }).then((response) => {
                 console.log(response);
-                this.toast.success('Items Added to Cart Successfully');
+                if(response.data.hasOwnProperty('status')) {
+                    if(response.data.status == 'error') {
+                        this.toast.error(response.data.message);
+                    } else {
+                        this.toast.error(response.data.message);
+                    }
+                } else {
+                    this.toast.error('Something went wrong');
+                }
+
             }).catch((error) => {
-                // app.$toast.error('Something went wrong. Please try again');
+                this.toast.error('Something went wrong');
             });
         },
     },

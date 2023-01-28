@@ -85,8 +85,8 @@ class RestaurantsController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'email' => ['required', 'unique:restaurants'],
-            'phone' => ['required', 'unique:restaurants', 'digits:10'],
+            'email' => ['required',],
+            'phone' => ['required', 'digits:10'],
             'address' => ['required'],
         ]);
 
