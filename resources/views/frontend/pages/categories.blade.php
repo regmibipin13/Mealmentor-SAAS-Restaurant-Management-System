@@ -29,9 +29,7 @@
                                 <div class="card-body ">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <span class="mm-color-text mm-text-17 mm-text-bold">{{ $item->name }}</span>
-                                        <span class="mm-color-text">Rs. {{ $item->price }} /
-                                            {{ $item->unit_value_of_price }}
-                                            {{ $item->unit->name }}</span>
+                                        <span class="mm-color-text">Rs. {{ $item->price }}</span>
                                     </div>
                                     <div class="description text-secondary pt-2 pb-2">
                                         {!! Str::words($item->description, '16') !!} ...

@@ -78,27 +78,45 @@
                                     </table>
                                 </td>
                             </tr>
-                            <tr>
-                                <th>Payment Details</th>
-                                <td>
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th>Payment Id</th>
-                                            <th>Payment Method</th>
-                                            <th>Payment Status</th>
-                                            <th>Payment Amount</th>
-                                            <th>Payment Response</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ $order->payment->id }}</td>
-                                            <td>{{ $order->payment->payment_method }}</td>
-                                            <td>{{ $order->payment->payment_status }}</td>
-                                            <td>{{ $order->payment->amount }}</td>
-                                            <td>{{ $order->payment->response }}</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
+                            @if ($order->payment)
+                                <tr>
+                                    <th>Payment Details</th>
+                                    <td>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>Payment Id</th>
+                                                <th>Payment Method</th>
+                                                <th>Payment Status</th>
+                                                <th>Payment Amount</th>
+                                                <th>Payment Response</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ $order->payment->id }}</td>
+                                                <td>{{ $order->payment->payment_method }}</td>
+                                                <td>{{ $order->payment->payment_status }}</td>
+                                                <td>{{ $order->payment->amount }}</td>
+                                                <td>{{ $order->payment->response }}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <th>Payment Details</th>
+                                    <td>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>Payment Status</th>
+
+                                            </tr>
+                                            <tr>
+                                                <td>{{ __('Payment Not Completed') }}</td>
+
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            @endif
                         </table>
                     </div>
                 </div>

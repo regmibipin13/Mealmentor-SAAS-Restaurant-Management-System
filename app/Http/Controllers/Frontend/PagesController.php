@@ -12,7 +12,7 @@ class PagesController extends Controller
 {
     public function home()
     {
-        $restaurants = Restaurant::pluck('name', 'id');
+        $restaurants = Restaurant::all();
         return view('frontend.pages.home', compact('restaurants'));
     }
 

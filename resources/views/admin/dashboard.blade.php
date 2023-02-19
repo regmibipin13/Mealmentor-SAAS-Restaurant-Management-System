@@ -1,9 +1,7 @@
 @extends('admin.app')
 @section('content')
     <div class="container-fluid py-1 mt-2">
-
         <div class="row">
-
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="card  mb-4">
                     <div class="card-body p-3">

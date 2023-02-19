@@ -45,8 +45,9 @@
                          </form>
                      </div>
                      @if (auth()->user()->user_type == App\Models\User::USER_TYPE['customer'])
-                         <a href="{{ route('frontend.carts.index') }}" class="mm-button bg-cart-button cart-button">
-                             <i class="fa-solid fa-heart"></i>
+                         <a href="{{ route('frontend.online-orders.index') }}"
+                             class="mm-button bg-cart-button cart-button">
+                             <i class="fa-brands fa-first-order"></i>
                              {{-- <span class="cart-quantity">1</span> --}}
                          </a>
                          <a href="{{ route('frontend.carts.index') }}" class="mm-button bg-cart-button cart-button">

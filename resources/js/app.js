@@ -41,7 +41,9 @@ import axios from 'axios';
 
 //Using and defining the components
 
-app.use(Toast);
+app.use(Toast,{
+    position:'bottom-right'
+});
 app.component('cart', Cart);
 app.component('add-to-cart', AddToCart);
 app.component('pos', Pos);
