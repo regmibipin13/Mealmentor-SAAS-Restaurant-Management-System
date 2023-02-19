@@ -51,7 +51,7 @@
                          </a>
                          <a href="{{ route('frontend.carts.index') }}" class="mm-button bg-cart-button cart-button">
                              <i class="fa-solid fa-cart-shopping"></i>
-                             {{-- <span class="cart-quantity" v-cloak>@{{ cartCount }}</span> --}}
+                             <span class="cart-quantity" v-cloak>@{{ cartCount }}</span>
                          </a>
                      @endif
                  @else
@@ -59,7 +59,7 @@
                      <a href="{{ route('register') }}" class="mm-button bg-theme-button">Register</a>
                      <a href="{{ route('frontend.carts.index') }}" class="mm-button bg-cart-button cart-button">
                          <i class="fa-solid fa-cart-shopping"></i>
-                         <span class="cart-quantity">1</span>
+                         {{-- <span class="cart-quantity">1</span> --}}
                      </a>
                  @endauth
 

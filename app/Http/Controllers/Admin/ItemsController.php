@@ -97,11 +97,11 @@ class ItemsController extends Controller
      */
     public function edit(Item $item)
     {
-        abort_if(Gate::denies('item_categories_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('item_categories_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $item->load(['item_category', 'unit']);
         $itemCategories = ItemCategory::pluck('name', 'id');
         $units = Unit::pluck('name', 'id');
-        return view('admin.items.edit', compact('item', 'itemCategories', 'units'));
+        return view('admin.items.edit', compact('itemCategories', 'units', 'item'));
     }
 
     /**
@@ -113,7 +113,7 @@ class ItemsController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
-        $sanitized = $this->checkForBools($request->validated());
+        $sanitized = $this->checkForBools($request->all());
         $item->update($sanitized);
         if ($request->has('photo') && $request->file('photo') !== null) {
             $item->clearMediaCollection();

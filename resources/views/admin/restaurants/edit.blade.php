@@ -8,7 +8,8 @@
                         <h3 class="card-title">Restaurant Form</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST">
+                        <form action="{{ route('admin.restaurants.update', $restaurant->id) }}"
+                            method="POST"enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             @include('admin.restaurants.form')

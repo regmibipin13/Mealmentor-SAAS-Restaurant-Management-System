@@ -5,14 +5,16 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Items Edit Form</h3>
+                        <h3 class="card-title">Item Edit Form</h3>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('restaurants.items.update', $item->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
+
                             @include('restaurants.items.form')
+
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>

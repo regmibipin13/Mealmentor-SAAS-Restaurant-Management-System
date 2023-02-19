@@ -26,48 +26,49 @@
                         </form>
                     </div>
                 </div>
-                </form>
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>#ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (count($restaurants) > 0)
-                            @foreach ($restaurants as $restaurant)
-                                <tr>
-                                    <td>{{ $restaurant->id }}</td>
-                                    <td>{{ $restaurant->name }}</td>
-                                    <td>{{ $restaurant->email }}</td>
-                                    <td>{{ $restaurant->phone }}</td>
-                                    <td>{{ $restaurant->address }}</td>
-
-                                    <td>
-                                        <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a>
-                                        <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}"
-                                            method="POST" id="delete-form">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="btn btn-danger btn-sm delete-button">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @else
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
                             <tr>
-                                <td colspan="4" class="text-center">No Data available</td>
+                                <th>#ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Actions</th>
                             </tr>
-                        @endif
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @if (count($restaurants) > 0)
+                                @foreach ($restaurants as $restaurant)
+                                    <tr>
+                                        <td>{{ $restaurant->id }}</td>
+                                        <td>{{ $restaurant->name }}</td>
+                                        <td>{{ $restaurant->email }}</td>
+                                        <td>{{ $restaurant->phone }}</td>
+                                        <td>{{ $restaurant->address }}</td>
+
+                                        <td>
+                                            <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                            <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}"
+                                                method="POST" id="delete-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-danger btn-sm delete-button">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="4" class="text-center">No Data available</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
                 <div class="card-footer">
                     {{ $restaurants->appends(Request::all())->links('pagination::bootstrap-4') }}
                 </div>

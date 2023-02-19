@@ -51,9 +51,9 @@
                                             </a>
                                         @endif
                                         &nbsp;&nbsp;
-                                        <button class="mm-button bg-none-button">
+                                        {{-- <button class="mm-button bg-none-button">
                                             <i class="fa-solid fa-heart" class="mm-color-text"></i>
-                                        </button>
+                                        </button> --}}
                                     </div>
                                 </div>
                             </div>

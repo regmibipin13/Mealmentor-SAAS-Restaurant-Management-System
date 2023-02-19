@@ -18,7 +18,7 @@ trait Filterable
 
     public function isValidValue($value)
     {
-        if ($value !== null && $value !== '') {
+        if ($value !== null && $value !== '' && $value !== 'all') {
             return true;
         }
         return false;

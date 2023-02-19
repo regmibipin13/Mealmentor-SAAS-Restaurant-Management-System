@@ -33,36 +33,54 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 card">
-                <div class="card-header">
-                    Orders Reports
-                </div>
-                <div class="card-body">
-                    {!! $chart1->renderHtml() !!}
-                </div>
-            </div>
-            <div class="col-md-6 card">
-                <div class="card-header">
-                    Sales Reports
-                </div>
-                <div class="card-body">
-                    {!! $chart2->renderHtml() !!}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Orders Reports
+                    </div>
+                    <div class="card-body">
+                        {!! $chart1->renderHtml() !!}
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3 card">
-                <div class="card-header">
-                    Orders By Payment Method
-                </div>
-                <div class="card-body">
-                    {!! $chart3->renderHtml() !!}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        POS Orders Reports
+                    </div>
+                    <div class="card-body">
+                        {!! $chart5->renderHtml() !!}
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3 card">
-                <div class="card-header">
-                    Orders By Status
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Sales Reports
+                    </div>
+                    <div class="card-body">
+                        {!! $chart2->renderHtml() !!}
+                    </div>
                 </div>
-                <div class="card-body">
-                    {!! $chart4->renderHtml() !!}
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Orders By Payment Method
+                    </div>
+                    <div class="card-body">
+                        {!! $chart3->renderHtml() !!}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Orders By Status
+                    </div>
+                    <div class="card-body">
+                        {!! $chart4->renderHtml() !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,4 +94,5 @@
     {!! $chart2->renderJs() !!}
     {!! $chart3->renderJs() !!}
     {!! $chart4->renderJs() !!}
+    {!! $chart5->renderJs() !!}
 @endsection

@@ -8,7 +8,7 @@
                         <h3 class="card-title">Restaurans Form</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.restaurants.store') }}" method="POST">
+                        <form action="{{ route('admin.restaurants.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             @include('admin.restaurants.form')

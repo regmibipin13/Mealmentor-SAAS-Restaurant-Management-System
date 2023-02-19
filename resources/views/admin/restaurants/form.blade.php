@@ -41,3 +41,13 @@
         <p class="text-danger">{{ $errors->first('password') }}</p>
     @enderror
 </div>
+
+<div class="form-group">
+    <img src="{{ isset($restaurant) ? $restaurant->getFirstMediaUrl() : '' }}"
+        alt="{{ isset($restaurant) ? $restaurant->name : '' }}" width="70" height="70">
+    <label for="photo">Photo</label>
+    <input type="file" name="photo" value="">
+    @error('photo')
+        <p class="text-danger">{{ $errors->first('photo') }}</p>
+    @enderror
+</div>

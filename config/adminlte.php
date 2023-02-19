@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Restaurant Name',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Meal</b>Mentor',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -291,21 +291,21 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -314,53 +314,67 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'restaurants/dashboard',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa-solid fa-gauge',
             // 'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Units',
             'url'         => 'restaurants/units',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa-brands fa-unity',
             // 'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Item Categories',
             'url'         => 'restaurants/item-categories',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa-brands fa-product-hunt',
             // 'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Items',
             'url'         => 'restaurants/items',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa-solid fa-bowl-food',
             // 'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Online Orders',
             'url'         => 'restaurants/online-orders',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa-brands fa-jedi-order',
             // 'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Tables',
             'url'         => 'restaurants/tables',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa fa-table',
             // 'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Reports',
             'url'         => 'restaurants/reports',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa fa-bug',
             // 'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        [
+            'text'        => 'POS',
+            'url'         => 'restaurants/pos',
+            'icon'        => 'fa-solid fa-circle-plus',
+            // 'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'POS Orders',
+            'url'         => 'restaurants/pos-orders',
+            'icon'        => 'fa-brands fa-first-order',
+            // 'label'       => 4,
+            'label_color' => 'success',
+        ],
+        // ['header' => 'account_settings'],
         // [
         //     'text' => 'profile',
         //     'url'  => 'admin/settings',
@@ -371,44 +385,44 @@ return [
         //     'url'  => 'admin/settings',
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'multilevel',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //         [
+        //             'text'    => 'level_one',
+        //             'url'     => '#',
+        //             'submenu' => [
+        //                 [
+        //                     'text' => 'level_two',
+        //                     'url'  => '#',
+        //                 ],
+        //                 [
+        //                     'text'    => 'level_two',
+        //                     'url'     => '#',
+        //                     'submenu' => [
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url'  => '#',
+        //                         ],
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url'  => '#',
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //     ],
+        // ],
 
     ],
 

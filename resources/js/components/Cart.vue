@@ -76,14 +76,16 @@
                             <div class="form-group">
                                 <label>Address</label>
                                 <select class="form-control" v-model="address_id">
-                                    <option :value="add.id" v-for="add in addresses" :key="add.id">{{ add.street }}, {{ add.city }}</option>
+                                    <option :value="add.id" v-for="add in addresses" :key="add.id">{{ add.street }}, {{
+                                        add.city
+                                    }}</option>
                                 </select>
                             </div>
                             <div class="form-group mt-3">
                                 <label>Choose Payment Method</label>
 
                                 <div v-for="p in payment_methods" :key="p">
-                                    {{ p.toUpperCase() }} <input type="radio" :value="p" v-model="payment_method"/>
+                                    {{ p.toUpperCase() }} <input type="radio" :value="p" v-model="payment_method" />
                                 </div>
                             </div>
                         </div>
@@ -111,20 +113,20 @@ var apis = {
 import { useToast } from "vue-toastification";
 export default {
     name: 'Cart',
-    props:['addresses'],
+    props: ['addresses'],
     data: function () {
         return {
             cart: {
                 user_id: '',
                 total_amount: '',
                 items: [],
-                restaurant_id:'',
+                restaurant_id: '',
             },
             toast: '',
-            address_id:'',
-            payment_methods:['cash','esewa'],
-            payment_method:'',
-            restaurant_id:'',
+            address_id: '',
+            payment_methods: ['cash', 'esewa'],
+            payment_method: '',
+            restaurant_id: '',
 
         }
     },
@@ -142,6 +144,8 @@ export default {
                 quantity: 1,
                 price: item.price,
             }).then((response) => {
+                this.$parent.countCart();
+                this.toast.success('Item Added to cart Successfully');
                 console.log(response);
             });
         },
@@ -150,6 +154,7 @@ export default {
                 item_id: item.id,
             }).then((response) => {
                 this.cart.items.splice(index, 1);
+                this.$parent.countCart();
                 this.toast.error('Item Removed Successfully');
             });
         },
@@ -162,49 +167,50 @@ export default {
                 quantity: qty,
             }).then((response) => {
                 this.cart.items[index].pivot.quantity = qty;
+                this.$parent.countCart();
                 this.toast.success(`Item Quantity Updated to ${qty}`);
             });
         },
         checkout() {
-            if(this.address_id == "" || this.payment_method == "") {
+            if (this.address_id == "" || this.payment_method == "") {
                 this.toast.error('Address and Payment Payment Cannot be empty');
             }
 
             var canCheckout = false;
             var ids = [];
-            this.cart.items.forEach(function(item){
+            this.cart.items.forEach(function (item) {
                 ids.push(item.restaurant_id);
             });
 
-            if(ids.every((val, i, arr) => val === arr[0])) {
+            if (ids.every((val, i, arr) => val === arr[0])) {
                 canCheckout = true;
             }
 
-            if(!canCheckout) {
+            if (!canCheckout) {
                 this.toast.error('You cannot order from multiple restaurants in a single order.');
                 return;
             }
-            axios.post('/order',{
-                items:this.cart.items,
-                address_id:this.address_id,
-                payment_method:this.payment_method,
-                payable_amount:this.getTotalCart,
-                restaurant_id:this.cart.items[0].restaurant_id
+            axios.post('/order', {
+                items: this.cart.items,
+                address_id: this.address_id,
+                payment_method: this.payment_method,
+                payable_amount: this.getTotalCart,
+                restaurant_id: this.cart.items[0].restaurant_id
             }).then((response) => {
                 this.toast.success(`Order Created Successfully with Order Id ${response.data.id}`);
 
-                if(this.payment_method == "esewa") {
+                if (this.payment_method == "esewa") {
                     this.redirectToEsewa(response.data.id);
                 } else {
-                    window.location.href="/order-success?order_id="+response.data.id;
+                    window.location.href = "/order-success?order_id=" + response.data.id;
                 }
             }).catch((error) => {
                 console.log(error);
             })
         },
         redirectToEsewa(orderId) {
-            var path="https://uat.esewa.com.np/epay/main";
-            var params= {
+            var path = "https://uat.esewa.com.np/epay/main";
+            var params = {
                 amt: this.getTotalCart,
                 psc: 0,
                 pdc: 0,
@@ -212,14 +218,14 @@ export default {
                 tAmt: this.getTotalCart,
                 pid: orderId,
                 scd: "EPAYTEST",
-                su: "http://mealmentor.test/order-success?order_id="+orderId,
-                fu: "http://mealmentor.test/order-failed?order_id="+orderId
+                su: "http://mealmentor.test/order-success?order_id=" + orderId,
+                fu: "http://mealmentor.test/order-failed?order_id=" + orderId
             }
             var form = document.createElement("form");
             form.setAttribute("method", "POST");
             form.setAttribute("action", path);
 
-            for(var key in params) {
+            for (var key in params) {
                 var hiddenField = document.createElement("input");
                 hiddenField.setAttribute("type", "hidden");
                 hiddenField.setAttribute("name", key);

@@ -8,8 +8,7 @@
 </div>
 <div class="form-group">
     <label for="category">Category</label>
-    <select name="item_category_id" id="category"
-        class="form-control select2 @error('item_category_id') is-invalid @enderror">
+    <select name="item_category_id" id="category" class="form-control @error('item_category_id') is-invalid @enderror">
         @foreach ($itemCategories as $id => $name)
             <option value="{{ $id }}"
                 {{ isset($item) ? ($item->item_category_id == $id ? 'selected' : '') : '' }}>
@@ -23,7 +22,7 @@
 </div>
 <div class="form-group">
     <label for="unit">Unit</label>
-    <select name="unit_id" id="unit" class="form-control select2 @error('unit_id') is-invalid @enderror">
+    <select name="unit_id" id="unit" class="form-control @error('unit_id') is-invalid @enderror">
         @foreach ($units as $id => $name)
             <option value="{{ $id }}" {{ isset($item) ? ($item->unit_id == $id ? 'selected' : '') : '' }}>
                 {{ $name }}
@@ -87,7 +86,7 @@
     <img src="{{ isset($item) ? $item->photo : '' }}" alt="{{ isset($item) ? $item->photo : '' }}" width="70"
         height="70">
     <label for="photo">Photo</label>
-    <input type="file" name="photo" value="{{ isset($item) ? $item->photo : '' }}">
+    <input type="file" name="photo" value="">
     @error('photo')
         <p class="text-danger">{{ $errors->first('photo') }}</p>
     @enderror

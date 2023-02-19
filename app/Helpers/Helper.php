@@ -19,3 +19,21 @@ function generateQrUrl($table)
 
     return QrCode::generate($url);
 }
+function generateActionButtons($editRoute, $deleteRoute)
+{
+    $csrf = csrf_token();
+    $deleteButton =
+        "
+            <div class='d-flex align-items-center'>
+                <a href='$editRoute' class='btn btn-sm btn-info'>View</a>
+                &nbsp;
+                <form action='$deleteRoute' method='POST' class='p-0 m-0'>
+                    <input type='hidden' name='_token' value='$csrf' />
+                    <input type='hidden' name='_method' value='delete' />
+                    <button class='btn btn-sm btn-danger' type='submit'>Delete</button>
+                </form>
+            </div>
+        ";
+
+    return $deleteButton;
+}

@@ -9,6 +9,7 @@
     <title>
         @yield('title', 'Admin Panel')
     </title>
+    <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -20,13 +21,15 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('/admin/css/argon-dashboard.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    @yield('css')
+    @stack('after_styles')
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
 
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     @include('admin.includes.sidebar')
-    <main class="main-content position-relative border-radius-lg ">
+    <main class="main-content position-relative border-radius-lg" id="app">
         @include('admin.includes.navbar')
         <!-- End Navbar -->
         @yield('content')
@@ -34,11 +37,9 @@
 
 
 
-
-
     <!--   Core JS Files   -->
-    <script src="{{ asset('/admin/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('/admin/js/core/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('/admin/js/core/popper.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('/admin/js/core/bootstrap.min.js') }}"></script> --}}
 
     <!-- Plugin for the charts, full documentation here: https://www.chartjs.org/ -->
     <script src="{{ asset('/admin/js/plugins/chartjs.min.js') }}"></script>
@@ -48,12 +49,16 @@
     <script src="{{ asset('/admin/js/argon-dashboard.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $('.select2').select2();
         });
     </script>
-
+    @yield('js')
+    @stack('after_scripts')
 </body>
 
 </html>

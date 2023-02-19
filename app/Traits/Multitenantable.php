@@ -17,6 +17,10 @@ trait Multitenantable
                 static::addGlobalScope('restaurant_id', function (Builder $builder) {
                     return $builder->where('restaurant_id', currentRestaurant()->id);
                 });
+            } elseif (auth()->user()->type == User::USER_TYPE['admin']) {
+                static::creating(function ($model) {
+                    $model->restaurant_id = request()->restaurant_id;
+                });
             }
         }
     }

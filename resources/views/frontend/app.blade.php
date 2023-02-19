@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('page_title', 'Restaurant Name')</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <style>
+        [v-cloak] {
+            display: none !important;
+        }
+    </style>
     @yield('styles')
     @stack('after_styles')
 </head>

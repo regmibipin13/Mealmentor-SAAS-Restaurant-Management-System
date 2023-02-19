@@ -113,6 +113,20 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 
     // Online Orders
     Route::resource('online-orders', 'OnlineOrdersController');
+
+    // Reports
+    Route::get('/reports', 'ReportsController@index')->name('reports.index');
+
+    // Tables
+    Route::resource('tables', 'TablesController');
+
+
+    // POS
+    Route::resource('pos', 'PosOrderController');
+
+    // POS Orders
+    Route::post('pos-orders/{posOrder}/remove-items', 'PosOrdersController@remove')->name('pos-orders.remove_item');
+    Route::resource('pos-orders', 'PosOrdersController');
 });
 
 Route::group(['as' => 'restaurants.', 'prefix' => 'restaurants', 'namespace' => 'Restaurants', 'middleware' => ['is_restaurant']], function () {
@@ -135,4 +149,12 @@ Route::group(['as' => 'restaurants.', 'prefix' => 'restaurants', 'namespace' => 
 
     // Tables
     Route::resource('tables', 'TablesController');
+
+
+    // POS
+    Route::resource('pos', 'PosOrderController');
+
+    // POS Orders
+    Route::post('pos-orders/{posOrder}/remove-items', 'PosOrdersController@remove')->name('pos-orders.remove_item');
+    Route::resource('pos-orders', 'PosOrdersController');
 });

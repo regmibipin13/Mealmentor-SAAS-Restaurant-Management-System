@@ -46,8 +46,10 @@ class RestaurantsController extends Controller
             'email' => ['required', 'unique:restaurants'],
             'phone' => ['required', 'unique:restaurants', 'digits:10'],
             'address' => ['required'],
+            'photo' => ['required'],
         ]);
         $restaurant = Restaurant::create($request->all());
+        $restaurant->addMedia($request->photo)->toMediaCollection();
         return redirect()->to('/admin/restaurants')->with('success', 'restaurant Created Successfully');
     }
 
@@ -88,11 +90,14 @@ class RestaurantsController extends Controller
             'email' => ['required',],
             'phone' => ['required', 'digits:10'],
             'address' => ['required'],
+            'photo' => ['nullable'],
         ]);
 
-
-
         $restaurant->update($request->all());
+        if ($request->has('photo') && $request->photo !== null) {
+            $restaurant->clearMediaCollection();
+            $restaurant->addMedia($request->photo)->toMediaCollection();
+        }
         return redirect()->to('/admin/restaurants')->with('success', 'restaurant Updated Successfully');
     }
 

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    {{-- <div class="card-header">
                         <form action="{{ route('restaurants.online-orders.index') }}" method="get">
                             <div class="row mb-2">
 
@@ -38,9 +38,9 @@
                                     <button type="submit" class="btn btn-secondary">Filter</button>
                                 </div>
                         </form>
-                    </div>
+                    </div> --}}
                     <div class="card-body">
-                        <table class="table table-bordered table-hover datatable">
+                        {{-- <table class="table table-bordered table-hover datatable">
                             <thead>
                                 <tr>
                                     <th>#ID</th>
@@ -84,13 +84,18 @@
                                     </tr>
                                 @endif
                             </tbody>
-                        </table>
+                        </table> --}}
+
+                        {{ $dataTable->table() }}
                     </div>
                 </div>
             </div>
-            <div class="card-footer">
+            {{-- <div class="card-footer">
                 {{ $orders->appends(Request::all())->links('pagination::bootstrap-4') }}
-            </div>
+            </div> --}}
         </div>
     </div>
+@endsection
+@section('js')
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 @endsection

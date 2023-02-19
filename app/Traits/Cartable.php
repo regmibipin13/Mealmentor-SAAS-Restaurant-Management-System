@@ -14,7 +14,15 @@ trait Cartable
 
     public function cartCount()
     {
-        return $this->cart->items->count();
+        // return $this->cart->items->count();
+
+        $count = 0;
+
+        foreach ($this->cart->items as $item) {
+            $count = $count + $item->pivot->quantity;
+        }
+
+        return $count;
     }
 
     public function cartTotal()
@@ -30,7 +38,7 @@ trait Cartable
     public function addToCart($itemId, $qty = 1, $price = 0)
     {
         if ($this->cart()->exists()) {
-            if ($this->cart->items->first()->restaurant_id !== Item::find($itemId)->restaurant_id) {
+            if (count($this->cart->items) > 0 && $this->cart->items->first()->restaurant_id !== Item::find($itemId)->restaurant_id) {
                 return response()->json(['status' => 'error', 'message' => 'You cannot add items from multiple restaurants']);
             }
             if ($this->cart->items()->where('item_id', $itemId)->first() !== null) {

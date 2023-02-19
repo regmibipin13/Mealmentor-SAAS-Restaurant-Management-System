@@ -261,6 +261,41 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\PosOrder
+ *
+ * @property int $id
+ * @property int $table_id
+ * @property string $order_date
+ * @property string $order_status
+ * @property int $is_order_ended
+ * @property float $total_amount
+ * @property int|null $restaurant_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderableItem[] $orderable_items
+ * @property-read int|null $orderable_items_count
+ * @property-read \App\Models\Table|null $restaurant
+ * @property-read \App\Models\Table $table
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder activeOrders()
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder filters()
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereIsOrderEnded($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereOrderDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereOrderStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereRestaurantId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereTableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereTotalAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PosOrder whereUpdatedAt($value)
+ */
+	class PosOrder extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Restaurant
  *
  * @property int $id
@@ -272,6 +307,8 @@ namespace App\Models{
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
  * @property-read \App\Models\User $owner
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant filters()
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant newModelQuery()
@@ -287,7 +324,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereUserId($value)
  */
-	class Restaurant extends \Eloquent {}
+	class Restaurant extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{

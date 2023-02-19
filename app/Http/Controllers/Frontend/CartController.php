@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\OnlineOrder;
 use App\Models\OrderableItem;
 use App\Models\Payment;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
+
         $cart = auth()->user()->getCart();
         if ($request->ajax()) {
             return $cart;
@@ -22,7 +24,12 @@ class CartController extends Controller
 
     public function cartCount()
     {
-        $cartCount = auth()->user()->cartCount();
+        if (auth()->user()->user_type == User::USER_TYPE['customer']) {
+            $cartCount = auth()->user()->cartCount();
+        } else {
+            $cartCount = 0;
+        }
+
         return $cartCount;
     }
 

@@ -11,30 +11,31 @@
 
 <script>
 var apis = {
-    getApi:'/cart',
-    addApi:'/add-cart',
-    removeApi:'/remove-cart',
-    changeApi:'/change-cart-quantity',
+    getApi: '/cart',
+    addApi: '/add-cart',
+    removeApi: '/remove-cart',
+    changeApi: '/change-cart-quantity',
 }
 import { useToast } from "vue-toastification";
 export default {
-    props:['item'],
-    data: function() {
+    props: ['item'],
+    data: function () {
         return {
-            toast:'',
+            toast: '',
         };
     },
-    methods:{
+    methods: {
         addToCart: function (item) {
-            axios.post(apis.addApi,{
-                item_id:item.id,
-                price:item.price,
-                quantity:1,
+            axios.post(apis.addApi, {
+                item_id: item.id,
+                price: item.price,
+                quantity: 1,
             }).then((response) => {
                 console.log(response);
-                if(response.data.hasOwnProperty('status')) {
-                    if(response.data.status == 'error') {
-                        this.toast.error(response.data.message);
+                if (response.data.hasOwnProperty('status')) {
+                    if (response.data.status == 'success') {
+                        this.toast.success(response.data.message);
+                        this.$parent.countCart()
                     } else {
                         this.toast.error(response.data.message);
                     }

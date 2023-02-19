@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\OnlineOrdersDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\OnlineOrder;
 use Illuminate\Http\Request;
@@ -13,10 +14,11 @@ class OnlineOrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OnlineOrdersDataTable $dataTable)
     {
-        $orders = OnlineOrder::filters()->orderBy('id', 'desc')->paginate(20);
-        return view('admin.online-orders.index', compact('orders'));
+        return $dataTable->render('admin.online-orders.index');
+        // $orders = OnlineOrder::filters()->orderBy('id', 'desc')->paginate(20);
+        // return view('admin.online-orders.index', compact('orders'));
     }
 
     /**
