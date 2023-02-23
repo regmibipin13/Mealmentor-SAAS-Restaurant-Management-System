@@ -122,7 +122,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 
 
     // POS
-    Route::resource('pos', 'PosOrderController');
+    // Route::resource('pos', 'PosOrderController');
 
     // POS Orders
     Route::post('pos-orders/{posOrder}/remove-items', 'PosOrdersController@remove')->name('pos-orders.remove_item');

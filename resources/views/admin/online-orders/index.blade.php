@@ -4,16 +4,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-
                     <div class="card-body">
-
                         {{ $dataTable->table() }}
                     </div>
                 </div>
             </div>
-            {{-- <div class="card-footer">
-                {{ $orders->appends(Request::all())->links('pagination::bootstrap-4') }}
-            </div> --}}
         </div>
     </div>
 @endsection

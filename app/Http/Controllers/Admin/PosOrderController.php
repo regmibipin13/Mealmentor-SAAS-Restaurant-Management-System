@@ -77,7 +77,6 @@ class PosOrderController extends Controller
                 'order_status' => PosOrder::STATUS['created'],
                 'is_order_ended' => 0,
                 'total_amount' => $request->total,
-                'restaurant_id' => currentRestaurant()->id
             ]);
             foreach ($request->items as $item) {
                 $orderableItems = new OrderableItem();

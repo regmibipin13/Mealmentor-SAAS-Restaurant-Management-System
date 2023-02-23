@@ -3,6 +3,6 @@
 @endsection
 @section('content')
     <section id="pos" class="pt-3 pb-3">
-        <pos :categories="{{ $categories->toJson() }}" :tables="{{ $tables->toJson() }}"></pos>
+        <pos-admin :categories="{{ $categories->toJson() }}" :tables="{{ $tables->toJson() }}"></pos-admin>
     </section>
 @endsection
