@@ -14,7 +14,9 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-
+        if (!auth()->check()) {
+            return [];
+        }
         $cart = auth()->user()->getCart();
         if ($request->ajax()) {
             return $cart;
@@ -24,7 +26,7 @@ class CartController extends Controller
 
     public function cartCount()
     {
-        if (auth()->user()->user_type == User::USER_TYPE['customer']) {
+        if (auth()->check() && auth()->user()->user_type == User::USER_TYPE['customer']) {
             $cartCount = auth()->user()->cartCount();
         } else {
             $cartCount = 0;

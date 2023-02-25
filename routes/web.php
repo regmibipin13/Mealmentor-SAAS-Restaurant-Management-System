@@ -16,11 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::get('/', 'PagesController@home')->name('home');
     Route::get('/categories', 'PagesController@categories')->name('categories');
-    Route::get('/cart', 'CartController@index')->name('carts.index');
+    Route::get('/cart-count', 'CartController@cartCount')->name('carts.count');
+    Route::get('/table-ordering/{restaurant}', 'PagesController@pos');
+    Route::get('/pos-details/{restaurant}', 'PagesController@posDetails');
+    Route::post('/table-ordering/{restaurant}', 'PagesController@createPosOrder')->name('pos');
 });
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => 'auth'], function () {
     Route::get('/cart', 'CartController@index')->name('carts.index');
-    Route::get('/cart-count', 'CartController@cartCount')->name('carts.count');
+    // Route::get('/cart-count', 'CartController@cartCount')->name('carts.count');
     Route::post('/add-cart', 'CartController@addToCart')->name('carts.add');
     Route::post('/remove-cart', 'CartController@removeFromCart')->name('carts.remove');
     Route::post('/change-cart-quantity', 'CartController@changeQuantity')->name('carts.changeQuantity');

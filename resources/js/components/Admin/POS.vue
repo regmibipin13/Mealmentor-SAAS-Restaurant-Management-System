@@ -70,13 +70,11 @@
                                     <td>
                                         <button class="btn btn-sm btn-primary" @click="addToCart(product)">+</button>
                                         &nbsp;
-                                        <button class="btn btn-sm btn-danger"
-                                            @click="decreaseQuantity(product)">-</button>
+                                        <button class="btn btn-sm btn-danger" @click="decreaseQuantity(product)">-</button>
                                     </td>
                                     <td>Rs. {{ product.price * product.quantity }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-danger"
-                                            @click="removeFromCart(key)">Remove</button>
+                                        <button class="btn btn-sm btn-danger" @click="removeFromCart(key)">Remove</button>
                                     </td>
                                 </tr>
                                 <tr v-else>

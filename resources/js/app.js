@@ -37,6 +37,7 @@ import Cart from './components/Cart.vue';
 import AddToCart from './components/AddToCart.vue';
 import Pos from './components/Admin/POS.vue';
 import PosAdmin from './components/Admin/POSAdmin.vue';
+import PosCustomer from './components/POSCustomer.vue';
 import axios from 'axios';
 
 
@@ -49,6 +50,7 @@ app.component('cart', Cart);
 app.component('add-to-cart', AddToCart);
 app.component('pos', Pos);
 app.component('pos-admin', PosAdmin);
+app.component('pos-customer', PosCustomer);
 
 // Mounting the final app
 app.mount('#app');

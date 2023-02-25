@@ -14,7 +14,7 @@ function currentRestaurant()
 
 function generateQrUrl($table)
 {
-    $url =  url('/categories') . '?restaurant_id=' . $table->restaurant_id . '&tableOrder=true&tableId=' . $table->id;
+    $url =  route('frontend.pos.get', $table->restaurant_id) . '?table=' . Hash::make($table->id);
     QrCode::generate($url, public_path('qr-images/') . $table->id . '.svg');
 
     return QrCode::generate($url);
