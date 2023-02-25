@@ -4,8 +4,15 @@ use App\Models\Restaurant;
 use App\Models\User;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-function currentRestaurant()
+function currentRestaurant($var = 'web')
 {
+    if ($var == 'api') {
+        if (auth('api')->check() && auth('api')->user()->user_type == User::USER_TYPE['restaurant_owner']) {
+            return Restaurant::where('user_id', auth('api')->id())->first();
+        } else {
+            return null;
+        }
+    }
     if (auth()->check() && auth()->user()->user_type == User::USER_TYPE['restaurant_owner']) {
         return Restaurant::where('user_id', auth()->id())->first();
     }

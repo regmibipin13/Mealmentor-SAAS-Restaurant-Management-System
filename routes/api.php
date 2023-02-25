@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('/login', 'AuthenticationController@login');
+Route::get('/user', 'AuthenticationController@getLoggedInUser');
+Route::get('/units', 'UnitsController@index');
+Route::get('/item-categories', 'ItemCategoriesController@index');
+Route::get('/items', 'ItemsController@index');
+Route::resource('pos-orders', 'PosOrdersController');
