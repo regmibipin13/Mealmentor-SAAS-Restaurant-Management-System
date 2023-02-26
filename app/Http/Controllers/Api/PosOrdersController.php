@@ -64,6 +64,9 @@ class PosOrdersController extends Controller
 
     public function update(PosOrder $posOrder, Request $request)
     {
+        $request->validate([
+            'order_status' => 'required',
+        ]);
         if ($request->order_status == PosOrder::STATUS['completed']) {
             $order_ended = 1;
         } else {
