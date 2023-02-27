@@ -13,7 +13,7 @@ class Table extends Model
 
     protected $fillable = ['name', 'restaurant_id'];
 
-    public function restaurants()
+    public function restaurant()
     {
         return $this->belongsTo(Restaurant::class, 'restaurant_id');
     }

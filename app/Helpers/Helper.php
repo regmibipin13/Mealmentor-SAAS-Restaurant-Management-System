@@ -26,6 +26,7 @@ function generateQrUrl($table)
 
     return QrCode::generate($url);
 }
+
 function generateActionButtons($editRoute, $deleteRoute)
 {
     $csrf = csrf_token();

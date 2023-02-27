@@ -361,7 +361,7 @@ namespace App\Models{
  * @property int|null $restaurant_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Restaurant|null $restaurants
+ * @property-read \App\Models\Restaurant|null $restaurant
  * @method static \Illuminate\Database\Eloquent\Builder|Table filters()
  * @method static \Illuminate\Database\Eloquent\Builder|Table newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Table newQuery()

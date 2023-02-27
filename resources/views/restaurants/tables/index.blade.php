@@ -38,13 +38,14 @@
                                             <td>{{ $table->id }}</td>
                                             <td>{{ $table->name }}</td>
                                             <td>
-                                                {!! generateQrUrl($table) !!}
-                                                <a href="{{ asset('qr-images') . '/' . $table->id . '.svg' }}"
-                                                    download>Download</a>
+
+                                                <a href="{{ route('frontend.tableQR', $table->id) }}"
+                                                    target="_blank">{!! generateQrUrl($table) !!}</a>
                                             </td>
                                             <td>
                                                 <a href="{{ route('restaurants.tables.edit', $table->id) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
+                                                &nbsp;
                                                 <a href="#" class="btn btn-danger btn-sm delete-button"
                                                     onclick="document.getElementById('delete-form-{{ $table->id }}').submit();">Delete</a>
                                                 <form action="{{ route('restaurants.tables.destroy', $table->id) }}"

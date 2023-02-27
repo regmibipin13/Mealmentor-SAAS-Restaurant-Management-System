@@ -116,4 +116,10 @@ class PagesController extends Controller
             return response()->json(['status' => 'success', 'message' => 'Order Created Successfully']);
         }
     }
+
+    public function tableQR(Table $table)
+    {
+        $table->load(['restaurant']);
+        return view('table_qr_view', compact('table'));
+    }
 }

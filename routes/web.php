@@ -20,6 +20,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::get('/table-ordering/{restaurant}', 'PagesController@pos');
     Route::get('/pos-details/{restaurant}', 'PagesController@posDetails')->name('pos.get');
     Route::post('/table-ordering/{restaurant}', 'PagesController@createPosOrder')->name('pos');
+    Route::get('/table-qr/{table}', 'PagesController@tableQR')->name('tableQR');
 });
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => 'auth'], function () {
     Route::get('/cart', 'CartController@index')->name('carts.index');
