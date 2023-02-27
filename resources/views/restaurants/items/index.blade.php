@@ -7,13 +7,15 @@
                     <div class="card-header">
                         <form action="{{ route('restaurants.items.index') }}" method="get">
                             <div class="row mb-2">
-                                <div class="col-md-2">
+                                <div class="col-md-12 py-2">
                                     <a href="{{ route('restaurants.items.create') }}" class="btn btn-success">Add New</a>
                                 </div>
 
                                 <div class="col-md-10 d-flex align-items-start justify-content-between filters-input">
                                     <input type="text" name="name" value="{{ request()->name }}"
                                         placeholder="Item Name" class="form-control">
+                                    &nbsp;
+                                    &nbsp;
                                     <select name="item_category_id" id="item_category_id" class="form-control select2">
                                         <option value="">Category</option>
                                         @foreach ($itemCategories as $id => $name)
@@ -22,6 +24,8 @@
                                                 {{ $name }}</option>
                                         @endforeach
                                     </select>
+                                    &nbsp;
+                                    &nbsp;
                                     <select name="unit_id" id="unit_id" class="form-control select2">
                                         <option value="">Unit</option>
                                         @foreach ($units as $id => $name)
@@ -30,6 +34,8 @@
                                                 {{ $name }}</option>
                                         @endforeach
                                     </select>
+                                    &nbsp;
+                                    &nbsp;
                                     <select name="out_of_stock" id="out_of_stock" class="form-control select2">
                                         <option value="">Stock Status</option>
                                         <option value="1"{{ request()->out_of_stock == '1' ? 'selected' : '' }}>Out of
@@ -37,14 +43,8 @@
                                         <option value="0"{{ request()->out_of_stock == '0' ? 'selected' : '' }}>
                                             Available</option>
                                     </select>
-                                    {{-- <select name="sort" id="sort" class="form-control select2">
-                                        <option value="">Sort</option>
-                                        <option value="low"{{ request()->sort == 'low' ? 'selected' : '' }}>Low Price to
-                                            High</option>
-                                        <option value="high"{{ request()->sort == 'high' ? 'selected' : '' }}>High Price
-                                            to
-                                            Low</option>
-                                    </select> --}}
+                                    &nbsp;
+                                    &nbsp;
                                     <button type="submit" class="btn btn-secondary">Filter</button>
                                 </div>
                         </form>
@@ -76,7 +76,10 @@
                                             <td>{{ $item->unit->name }}</td>
                                             <td>{{ $item->price }}</td>
                                             <td>{{ $item->out_of_stock == 1 ? 'Not Available' : 'Available' }}</td>
-                                            <td>
+                                            <td
+                                                style="display: flex;
+                                            align-items: center;
+                                            justify-content: space-evenly;">
                                                 <a href="{{ route('restaurants.items.edit', $item->id) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
                                                 <form action="{{ route('restaurants.items.destroy', $item->id) }}"
@@ -97,11 +100,12 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="card-footer">
+                        {{ $items->appends(Request::all())->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
-            <div class="card-footer">
-                {{ $items->appends(Request::all())->links('pagination::bootstrap-4') }}
-            </div>
+
         </div>
     </div>
 @endsection

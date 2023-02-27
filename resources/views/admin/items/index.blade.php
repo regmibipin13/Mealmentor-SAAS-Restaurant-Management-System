@@ -7,13 +7,14 @@
                     <div class="card-header">
                         <form action="{{ route('admin.items.index') }}" method="get">
                             <div class="row mb-2">
-                                <div class="col-md-2">
+                                <div class="col-md-12">
                                     <a href="{{ route('admin.items.create') }}" class="btn btn-success">Add New</a>
                                 </div>
 
                                 <div class="col-md-10 d-flex align-items-start justify-content-between filters-input">
                                     <input type="text" name="name" value="{{ request()->name }}"
                                         placeholder="Item Name" class="form-control">
+                                    &nbsp;
                                     <select name="item_category_id" id="item_category_id" class="form-control select2">
                                         <option value="">Category</option>
                                         @foreach ($itemCategories as $id => $name)
@@ -22,6 +23,7 @@
                                                 {{ $name }}</option>
                                         @endforeach
                                     </select>
+                                    &nbsp;
                                     <select name="unit_id" id="unit_id" class="form-control select2">
                                         <option value="">Unit</option>
                                         @foreach ($units as $id => $name)
@@ -30,6 +32,7 @@
                                                 {{ $name }}</option>
                                         @endforeach
                                     </select>
+                                    &nbsp;
                                     <select name="out_of_stock" id="out_of_stock" class="form-control select2">
                                         <option value="">Stock Status</option>
                                         <option value="1"{{ request()->out_of_stock == '1' ? 'selected' : '' }}>Out of
@@ -37,14 +40,7 @@
                                         <option value="0"{{ request()->out_of_stock == '0' ? 'selected' : '' }}>
                                             Available</option>
                                     </select>
-                                    {{-- <select name="sort" id="sort" class="form-control select2">
-                                        <option value="">Sort</option>
-                                        <option value="low"{{ request()->sort == 'low' ? 'selected' : '' }}>Low Price to
-                                            High</option>
-                                        <option value="high"{{ request()->sort == 'high' ? 'selected' : '' }}>High Price
-                                            to
-                                            Low</option>
-                                    </select> --}}
+                                    &nbsp;
                                     <button type="submit" class="btn btn-secondary">Filter</button>
                                 </div>
                         </form>

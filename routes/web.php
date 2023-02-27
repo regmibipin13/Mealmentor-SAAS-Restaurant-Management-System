@@ -17,8 +17,8 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::get('/', 'PagesController@home')->name('home');
     Route::get('/categories', 'PagesController@categories')->name('categories');
     Route::get('/cart-count', 'CartController@cartCount')->name('carts.count');
-    Route::get('/table-ordering/{restaurant}', 'PagesController@pos');
-    Route::get('/pos-details/{restaurant}', 'PagesController@posDetails')->name('pos.get');
+    Route::get('/table-ordering/{restaurant}', 'PagesController@pos')->name('pos.get');
+    Route::get('/pos-details/{restaurant}', 'PagesController@posDetails');
     Route::post('/table-ordering/{restaurant}', 'PagesController@createPosOrder')->name('pos');
     Route::get('/table-qr/{table}', 'PagesController@tableQR')->name('tableQR');
 });
