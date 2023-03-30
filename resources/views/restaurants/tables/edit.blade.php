@@ -8,7 +8,9 @@
                         <h3 class="card-title">Tables Edit Form</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('restaurants.tables.update', $table->id) }}" method="POST">
+                        <form
+                            action="{{ route('restaurants.tables.update', [currentRestaurant()->slug ?? uniqid(), $table->id]) }}"
+                            method="POST">
                             @csrf
                             @method('PATCH')
 

@@ -8,7 +8,8 @@
                         <h3 class="card-title">Items Create Form</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('restaurants.items.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('restaurants.items.store', [currentRestaurant()->slug ?? uniqid()]) }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
 
                             @include('restaurants.items.form')

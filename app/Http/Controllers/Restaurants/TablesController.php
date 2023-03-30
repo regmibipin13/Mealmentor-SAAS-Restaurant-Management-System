@@ -43,7 +43,7 @@ class TablesController extends Controller
     {
         $sanitized = $request->validate(['name' => 'required | unique:tables']);
         Table::create($sanitized);
-        return redirect()->to('/restaurants/tables')->with('success', 'Table Created Successfully');
+        return redirect()->route('restaurants.tables.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'Table Created Successfully');
     }
 
     /**
@@ -80,7 +80,7 @@ class TablesController extends Controller
     {
         $sanitized = $request->validate(['name' => 'required']);
         $table->update($sanitized);
-        return redirect()->to('/restaurants/tables')->with('success', 'Table Updated Successfully');
+        return redirect()->route('restaurants.tables.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'Table Updated Successfully');
     }
 
     /**

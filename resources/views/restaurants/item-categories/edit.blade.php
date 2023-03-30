@@ -8,7 +8,9 @@
                         <h3 class="card-title">Item Categories Edit Form</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('restaurants.item-categories.update', $itemCategory->id) }}" method="POST">
+                        <form
+                            action="{{ route('restaurants.item-categories.update', [currentRestaurant()->slug ?? uniqid(), $itemCategory->id]) }}"
+                            method="POST">
                             @csrf
                             @method('PATCH')
 

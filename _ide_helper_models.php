@@ -64,6 +64,40 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Coupon
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $code
+ * @property float $discount_percentage
+ * @property float $min_order_amount
+ * @property \Illuminate\Support\Carbon $valid_from
+ * @property \Illuminate\Support\Carbon $valid_till
+ * @property int $is_enabled
+ * @property int|null $restaurant_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Restaurant|null $restaurant
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereDiscountPercentage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereIsEnabled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereMinOrderAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereRestaurantId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereValidFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereValidTill($value)
+ */
+	class Coupon extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Item
  *
  * @property int $id
@@ -307,22 +341,34 @@ namespace App\Models{
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $slug
+ * @property string|null $subdomain
+ * @property int $approved
+ * @property float|null $delivery_price_per_km
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
  * @property-read \App\Models\User $owner
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Suscription[] $suscriptions
+ * @property-read int|null $suscriptions_count
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant filters()
+ * @method static \Illuminate\Database\Eloquent\Builder|Restaurant findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant query()
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereApproved($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereDeliveryPricePerKm($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereMinOrderValue($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereSubdomain($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Restaurant withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class Restaurant extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
@@ -350,6 +396,42 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereUpdatedAt($value)
  */
 	class Role extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Suscription
+ *
+ * @property int $id
+ * @property int $restaurant_id
+ * @property int $package_id
+ * @property string $package_name
+ * @property string $started_date
+ * @property string $valid_till
+ * @property float $amount
+ * @property string $payment_method
+ * @property string|null $payment_ref_id
+ * @property int $verified
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Restaurant $restaurant
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription wherePackageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription wherePackageName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription wherePaymentMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription wherePaymentRefId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription whereRestaurantId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription whereStartedDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription whereValidTill($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription whereVerified($value)
+ */
+	class Suscription extends \Eloquent {}
 }
 
 namespace App\Models{

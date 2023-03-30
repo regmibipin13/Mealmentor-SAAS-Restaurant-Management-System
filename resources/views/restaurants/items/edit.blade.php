@@ -8,8 +8,9 @@
                         <h3 class="card-title">Item Edit Form</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('restaurants.items.update', $item->id) }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form
+                            action="{{ route('restaurants.items.update', [currentRestaurant()->slug ?? uniqid(), $item->id]) }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
 

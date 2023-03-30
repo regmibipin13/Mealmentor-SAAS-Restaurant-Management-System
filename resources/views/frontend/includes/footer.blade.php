@@ -6,8 +6,7 @@
                     <span>Powered By Me@l Mentor</span>
                 </div>
                 <div class="col-md-6 copyright">
-                    <span>Copyright @ Cacao Grill Bar
-                        {{ Carbon\Carbon::now()->format('Y') }}</span>
+                    <a href="{{ url('restaurant/register') }}" style="color: #fff;">Become Mealmentor Partner</a>
                 </div>
                 <div class="col-md-3 social-media-box">
                     <div>

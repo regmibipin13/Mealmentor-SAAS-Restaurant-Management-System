@@ -3,8 +3,8 @@
     <div class="container-fluid py-1">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ url('/restaurants/reports') }}" class="row d-flex align-items-center justify-content-between"
-                    method="GET">
+                <form action="{{ route('restaurants.reports.index', [currentRestaurant()->slug ?? uniqid()]) }}"
+                    class="row d-flex align-items-center justify-content-between" method="GET">
                     <div class="form-group col-md-4">
                         <label for="from">From Date</label>
                         <input type="date" class="form-control" name="from_date" id="from"

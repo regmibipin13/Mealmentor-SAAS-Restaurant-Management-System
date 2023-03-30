@@ -38,7 +38,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => 'a
     Route::resource('addresses', 'AddressController');
 });
 
-
+Route::post('/coupon', 'Frontend\PagesController@applyCoupon');
 
 // Authentication Routes...
 Route::get('login', [
@@ -82,7 +82,25 @@ Route::post('register', [
     'uses' => 'Auth\RegisterController@register'
 ]);
 
-// Auth::routes();
+// Restaurant Registration Routes...
+Route::get('restaurant/register', [
+    'as' => 'restaurant.register',
+    'uses' => 'Auth\RegisterController@showRestaurantRegistrationForm'
+]);
+Route::get('restaurant/register/success', [
+    'as' => 'restaurant.register.success',
+    'uses' => 'Auth\RegisterController@restaurantRegisterSuccess'
+]);
+Route::get('restaurant/register/failed', [
+    'as' => 'restaurant.register.failed',
+    'uses' => 'Auth\RegisterController@restaurantRegisterFailed'
+]);
+Route::post('restaurant/register', [
+    'as' => '',
+    'uses' => 'Auth\RegisterController@restaurantRegister'
+]);
+
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -131,9 +149,15 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     // POS Orders
     Route::post('pos-orders/{posOrder}/remove-items', 'PosOrdersController@remove')->name('pos-orders.remove_item');
     Route::resource('pos-orders', 'PosOrdersController');
+
+
+    Route::resource('coupons', 'CouponsController');
+
+
+    Route::resource('packages', 'PackagesController');
 });
 
-Route::group(['as' => 'restaurants.', 'prefix' => 'restaurants', 'namespace' => 'Restaurants', 'middleware' => ['is_restaurant']], function () {
+Route::group(['as' => 'restaurants.', 'prefix' => 'restaurants/{slug}', 'namespace' => 'Restaurants', 'middleware' => ['is_restaurant']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
     // Units
@@ -161,4 +185,8 @@ Route::group(['as' => 'restaurants.', 'prefix' => 'restaurants', 'namespace' => 
     // POS Orders
     Route::post('pos-orders/{posOrder}/remove-items', 'PosOrdersController@remove')->name('pos-orders.remove_item');
     Route::resource('pos-orders', 'PosOrdersController');
+
+    // Coupons
+
+    Route::resource('coupons', 'CouponsController');
 });

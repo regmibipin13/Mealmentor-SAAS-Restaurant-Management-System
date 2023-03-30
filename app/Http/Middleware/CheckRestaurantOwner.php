@@ -19,6 +19,8 @@ class CheckRestaurantOwner
     {
         if (auth()->check()) {
             if (auth()->user()->user_type == User::USER_TYPE['restaurant_owner']) {
+                $route = $request->route();
+                $route->forgetParameter('slug');
                 return $next($request);
             } else {
                 return abort(404);

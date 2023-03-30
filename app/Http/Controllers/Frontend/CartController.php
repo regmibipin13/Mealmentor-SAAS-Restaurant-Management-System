@@ -7,6 +7,7 @@ use App\Models\OnlineOrder;
 use App\Models\OrderableItem;
 use App\Models\Payment;
 use App\Models\User;
+use App\Services\Couponable;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -89,16 +90,22 @@ class CartController extends Controller
             'address_id' => 'required',
             'payment_method' => 'required',
             'restaurant_id' => 'required',
+            'coupon' => 'nullable',
         ]);
-
+        if ($request->has('coupon') && $request->coupon !== null) {
+            $discount = Couponable::checkCouponWeb($request->coupon, $request->payable_amount);
+        } else {
+            $discount = 0;
+        }
         $order = OnlineOrder::create([
             'user_id' => auth()->id(),
             'address_id' => $request->address_id,
             'payable_amount' => $request->payable_amount,
-            'amount' => $request->payable_amount,
+            'amount' => $request->payable_amount + $discount,
             'date' => Carbon::now(),
             'payment_method' => $request->payment_method,
             'restaurant_id' => $request->restaurant_id,
+            'discount' => $discount
         ]);
         foreach ($request->items as $item) {
             $orderableItems = new OrderableItem();

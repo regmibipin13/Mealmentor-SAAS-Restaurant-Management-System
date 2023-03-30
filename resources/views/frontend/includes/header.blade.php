@@ -21,7 +21,8 @@
                                      {{ __('Dashboard') }}
                                  </a>
                              @elseif (auth()->user()->user_type == App\Models\User::USER_TYPE['restaurant_owner'])
-                                 <a class="dropdown-item" href="{{ route('restaurants.dashboard') }}">
+                                 <a class="dropdown-item"
+                                     href="{{ route('restaurants.dashboard', currentRestaurant()->slug ?? uniqid()) }}">
                                      {{ __('Dashboard') }}
                                  </a>
                              @endif

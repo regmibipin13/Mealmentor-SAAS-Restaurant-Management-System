@@ -5,9 +5,9 @@
             <div class="row align-items-center">
                 <div class="col-md-6 hero-text-box d-flex flex-column">
                     <form action="{{ route('frontend.categories') }}" method="GET">
-                        <h1 class="hero-main-text">Cacao Grill Bar and Restaurant</h1>
+                        <h1 class="hero-main-text">Order your Favorite Food with Mealmentor</h1>
                         <h3 class="text-secondary">So Fast, So Hot</h3>
-                        <h4>Choose your favorite category and order right now !</h4>
+                        <h4>Choose your favorite restaurant and order right now !</h4>
                         <select name="restaurant_id" class="form-control hero-cat-select select2">
                             <option value="">Select your Favorite Restaurant</option>
                             @foreach ($restaurants as $r)

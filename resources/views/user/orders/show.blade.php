@@ -69,7 +69,11 @@
                                         </tr>
                                         <tr>
                                             <th colspan="3">Discount</th>
-                                            <td>0</td>
+                                            <td>{{ $order->discount }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="3">Total Amount</th>
+                                            <td>{{ $order->amount }}</td>
                                         </tr>
                                         <tr>
                                             <th colspan="3">Payable Total</th>

@@ -10,14 +10,17 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-md-2">
-                                <a href="{{ route('restaurants.item-categories.create') }}" class="btn btn-success">Add
+                                <a href="{{ route('restaurants.item-categories.create', [currentRestaurant()->slug ?? uniqid()]) }}"
+                                    class="btn btn-success">Add
                                     New</a>
                             </div>
                             <div class="col-md-7">
 
                             </div>
                             <div class="col-md-3">
-                                <form action="{{ route('restaurants.item-categories.index') }}" method="get">
+                                <form
+                                    action="{{ route('restaurants.item-categories.index', [currentRestaurant()->slug ?? uniqid()]) }}"
+                                    method="get">
                                     <input type="search" name="name" value="{{ request()->name }}"
                                         placeholder="Unit Name" class="form-control">
                                 </form>
@@ -38,12 +41,12 @@
                                             <td>{{ $item_category->id }}</td>
                                             <td>{{ $item_category->name }}</td>
                                             <td>
-                                                <a href="{{ route('restaurants.item-categories.edit', $item_category->id) }}"
+                                                <a href="{{ route('restaurants.item-categories.edit', [currentRestaurant()->slug ?? uniqid(), $item_category->id]) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
                                                 <a href="#" class="btn btn-danger btn-sm delete-button"
                                                     onclick="document.getElementById('delete-form-{{ $item_category->id }}').submit();">Delete</a>
                                                 <form
-                                                    action="{{ route('restaurants.item-categories.destroy', $item_category->id) }}"
+                                                    action="{{ route('restaurants.item-categories.destroy', [currentRestaurant()->slug ?? uniqid(), $item_category->id]) }}"
                                                     method="POST" id="delete-form-{{ $item_category->id }}">
                                                     @csrf
                                                     @method('DELETE')

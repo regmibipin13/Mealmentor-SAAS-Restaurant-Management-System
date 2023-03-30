@@ -37,14 +37,14 @@
             <div class="col-md-12 text-center">
                 <h4>Table No. {{ $table->name }}</h4>
             </div>
-            <div class="col-md-12 py-3 text-center">
+            <div class="col-md-12 pt-3 text-center">
                 <img src="{{ asset('qr-images') . '/' . $table->id . '.svg' }}" alt="{{ $table->id }}" height="300"
                     width="300" style="border: 1px solid red;border-width: 5px;
                     padding: 5px;">
             </div>
-
-            <div class="col-md-12 py-2 text-center">
-                <h4 class="text-secondary">Powered By Mealmentor</h4>
+            <div class="col-md-12 pb-2 text-center">
+                {{-- <h4 class="text-secondary">Powered By</h4> --}}
+                <img src="{{ asset('images/logo.png') }}" alt="Mealmentor" width="200" height="100">
             </div>
         </div>
     </div>

@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
+use App\Models\Suscription;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Cixware\Esewa\Client;
+use Cixware\Esewa\Config;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class RegisterController extends Controller
 {
@@ -72,5 +79,69 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'is_admin_side' => 0,
         ]);
+    }
+
+    public function showRestaurantRegistrationForm()
+    {
+        return view('auth.restaurant_register');
+    }
+
+
+    public function restaurantRegister(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'unique:users,email'],
+            'phone' => ['required', 'unique:users,phone', 'digits:10'],
+        ]);
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'unique:restaurants'],
+            'phone' => ['required', 'unique:restaurants,phone', 'digits:10'],
+            'address' => ['required'],
+            'photo' => ['required'],
+            'plan_id' => ['required'],
+        ]);
+
+        $request->merge([
+            'slug' => SlugService::createSlug(Restaurant::class, 'slug', $request->name, ['unique' => true])
+        ]);
+        $restaurant = Restaurant::create($request->all());
+        $restaurant->addMedia($request->photo)->toMediaCollection();
+        $restaurant->suscribe($request->plan_id);
+    }
+
+    public function restaurantRegisterSuccess(Request $request)
+    {
+        $successUrl = route('restaurant.register.success');
+        $failureUrl = route('restaurant.register.failed');
+
+        // Config for development.
+        $config = new Config($successUrl, $failureUrl);
+
+        // Config for production.
+        // $config = new Config($successUrl, $failureUrl, 'b4e...e8c753...2c6e8b');
+
+        // Initialize eSewa client.
+        $esewa = new Client($config);
+
+
+        if ($esewa->verify($request->refId, $request->oid, $request->amt)) {
+            $suscription = Suscription::find($request->suscription);
+            $suscription->update([
+                'payment_ref_id' => $request->refId,
+                'verified' => 1,
+            ]);
+            $user_id = Restaurant::find($suscription->restaurant_id)->user_id;
+            $user = User::find($user_id);
+            Auth::login($user);
+            return redirect()->to('/home')->with('success', 'Your Restaurant is registered successfully');
+        } else {
+            $this->restaurantRegisterFailed();
+        }
+    }
+    public function restaurantRegisterFailed()
+    {
+        return 'Payment Failed Please Try Again Later';
     }
 }

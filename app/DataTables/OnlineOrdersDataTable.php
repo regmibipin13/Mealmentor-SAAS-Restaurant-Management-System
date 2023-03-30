@@ -48,7 +48,7 @@ class OnlineOrdersDataTable extends DataTable
      */
     public function query(OnlineOrder $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->orderBy('id', 'desc');
     }
 
     /**

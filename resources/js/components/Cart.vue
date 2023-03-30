@@ -34,8 +34,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <button class="btn btn-sm btn-danger"
-                                            @click="removeFromCart(item, index)">Remove <i
+                                        <button class="btn btn-sm btn-danger" @click="removeFromCart(item, index)">Remove <i
                                                 class="fa-solid fa-trash"></i></button>
                                     </div>
                                 </div>
@@ -73,6 +72,18 @@
                     </div>
                     <div class="col-md-12">
                         <div class="card-body">
+                            <div class="form-group my-2">
+                                <label for="coupon">Coupon</label>
+                                <input type="text" class="form-control" v-model="coupon" placeholder="Enter Coupon Code">
+                            </div>
+                            <button type="button" class="btn btn-success" @click="applyCoupon">Apply</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-danger" @click="removeCoupon"
+                                v-if="this.coupon !== ''">Remove Coupon</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-body">
                             <div class="form-group">
                                 <label>Address</label>
                                 <select class="form-control" v-model="address_id">
@@ -90,9 +101,11 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>Total: Rs. {{ getTotalCart }} </p>
-                            <p>Discount: Rs.0</p>
-                            <h3>Total: Rs. {{ getTotalCart }}</h3>
+                            <p>Total: Rs. {{ getTotalCart + total_discount }} </p>
+                            <p>Discount Percentage: {{ discount_percentage }} %
+                            </p>
+                            <p>Discount: Rs.{{ total_discount }}</p>
+                            <h3>Total: Rs. {{ getTotalCart }} </h3>
                             <button class="btn btn-success btn-block" @click="checkout()">Checkout</button>
                         </div>
                     </div>
@@ -116,12 +129,15 @@ export default {
     props: ['addresses'],
     data: function () {
         return {
+            coupon: '',
             cart: {
                 user_id: '',
-                total_amount: '',
+                total_amount: 0,
                 items: [],
                 restaurant_id: '',
             },
+            total_discount: 0,
+            discount_percentage: 0,
             toast: '',
             address_id: '',
             payment_methods: ['cash', 'esewa'],
@@ -131,6 +147,34 @@ export default {
         }
     },
     methods: {
+        removeCoupon() {
+            this.coupon = '';
+            this.discount_percentage = 0;
+            this.total_discount = 0;
+        },
+        applyCoupon() {
+            if (this.coupon == "") {
+                this.toast.error('Coupon Code cannot be empty');
+                return;
+            }
+            var canCheckout = false;
+
+            axios.post('/coupon', {
+                code: this.coupon,
+                total_amount: this.getTotalCart,
+            }).then((response) => {
+                if (response.data.hasOwnProperty('error')) {
+                    this.toast.error('Invalid Coupon');
+                    return;
+                }
+                this.total_discount = response.data.discount_amount;
+                this.discount_percentage = response.data.discount_percentage;
+                this.toast.success('Coupon Code Applied Successfully');
+            }).catch((error) => {
+                this.toast.error('Something went wrong');
+            })
+
+        },
         getCart() {
             axios.get(apis.getApi).then((response) => {
                 this.cart = response.data;
@@ -195,7 +239,8 @@ export default {
                 address_id: this.address_id,
                 payment_method: this.payment_method,
                 payable_amount: this.getTotalCart,
-                restaurant_id: this.cart.items[0].restaurant_id
+                restaurant_id: this.cart.items[0].restaurant_id,
+                coupon: this.coupon
             }).then((response) => {
                 this.toast.success(`Order Created Successfully with Order Id ${response.data.id}`);
 
@@ -240,8 +285,8 @@ export default {
         getTotalCart() {
             return this.cart.items.reduce((total, item) => {
                 return total + item.pivot.price * item.pivot.quantity;
-            }, 0);
-        }
+            }, 0) - this.total_discount;
+        },
     },
     mounted() {
         var _this = this;

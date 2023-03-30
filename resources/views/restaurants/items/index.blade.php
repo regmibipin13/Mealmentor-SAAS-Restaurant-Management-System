@@ -5,7 +5,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <form action="{{ route('restaurants.items.index') }}" method="get">
+                        <form action="{{ route('restaurants.items.index', [currentRestaurant()->slug ?? uniqid()]) }}"
+                            method="get">
                             <div class="row mb-2">
                                 <div class="col-md-12 py-2">
                                     <a href="{{ route('restaurants.items.create') }}" class="btn btn-success">Add New</a>
@@ -80,9 +81,10 @@
                                                 style="display: flex;
                                             align-items: center;
                                             justify-content: space-evenly;">
-                                                <a href="{{ route('restaurants.items.edit', $item->id) }}"
+                                                <a href="{{ route('restaurants.items.edit', [currentRestaurant()->slug ?? uniqid(), $item->id]) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
-                                                <form action="{{ route('restaurants.items.destroy', $item->id) }}"
+                                                <form
+                                                    action="{{ route('restaurants.items.destroy', [currentRestaurant()->slug ?? uniqid(), $item->id]) }}"
                                                     method="POST" id="delete-form">
                                                     @csrf
                                                     @method('DELETE')

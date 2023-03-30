@@ -59,7 +59,7 @@ class ItemsController extends Controller
         $item->photo = $item->media()->latest()->first()->getUrl();
         $item->save();
 
-        return redirect()->to('/restaurants/items')->with('success', 'Items Added Successfully');
+        return redirect()->route('restaurants.items.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'Items Added Successfully');
     }
 
 
@@ -122,7 +122,7 @@ class ItemsController extends Controller
             $item->save();
         }
 
-        return redirect()->to('/restaurants/items')->with('success', 'Items Updated Successfully');
+        return redirect()->route('restaurants.items.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'Items Updated Successfully');
     }
 
     /**

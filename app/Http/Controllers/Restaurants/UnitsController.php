@@ -43,7 +43,7 @@ class UnitsController extends Controller
     {
         $sanitized = $request->validate(['name' => 'required | unique:units']);
         Unit::create($sanitized);
-        return redirect()->to('/restaurants/units')->with('success', 'unit Created Successfully');
+        return redirect()->route('restaurants.units.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'unit Created Successfully');
     }
 
     /**
@@ -80,7 +80,7 @@ class UnitsController extends Controller
     {
         $sanitized = $request->validate(['name' => 'required']);
         $unit->update($sanitized);
-        return redirect()->to('/restaurants/units')->with('success', 'Unit Updated Successfully');
+        return redirect()->route('restaurants.units.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'Unit Updated Successfully');
     }
 
     /**

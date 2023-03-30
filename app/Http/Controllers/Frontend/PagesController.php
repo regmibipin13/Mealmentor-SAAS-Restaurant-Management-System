@@ -9,6 +9,7 @@ use App\Models\OrderableItem;
 use App\Models\PosOrder;
 use App\Models\Restaurant;
 use App\Models\Table;
+use App\Services\Couponable;
 use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\Request;
@@ -121,5 +122,15 @@ class PagesController extends Controller
     {
         $table->load(['restaurant']);
         return view('table_qr_view', compact('table'));
+    }
+
+    public function applyCoupon(Request $request)
+    {
+        $request->validate([
+            'code' => ['required'],
+            'total_amount' => ['required'],
+        ]);
+
+        return Couponable::checkCoupon($request->code, $request->total_amount);
     }
 }

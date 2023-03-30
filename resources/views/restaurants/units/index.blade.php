@@ -10,13 +10,15 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-md-2">
-                                <a href="{{ route('restaurants.units.create') }}" class="btn btn-success">Add New</a>
+                                <a href="{{ route('restaurants.units.create', currentRestaurant()->slug ?? uniqid()) }}"
+                                    class="btn btn-success">Add New</a>
                             </div>
                             <div class="col-md-7">
 
                             </div>
                             <div class="col-md-3">
-                                <form action="{{ route('restaurants.units.index') }}" method="get">
+                                <form action="{{ route('restaurants.units.index', currentRestaurant()->slug ?? uniqid()) }}"
+                                    method="get">
                                     <input type="search" name="name" value="{{ request()->name }}"
                                         placeholder="Unit Name" class="form-control">
                                 </form>
@@ -37,12 +39,13 @@
                                             <td>{{ $unit->id }}</td>
                                             <td>{{ $unit->name }}</td>
                                             <td>
-                                                <a href="{{ route('restaurants.units.edit', $unit->id) }}"
+                                                <a href="{{ route('restaurants.units.edit', [currentRestaurant()->slug ?? uniqid(), $unit->id]) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
                                                 &nbsp;
                                                 <a href="#" class="btn btn-danger btn-sm delete-button"
                                                     onclick="document.getElementById('delete-form-{{ $unit->id }}').submit();">Delete</a>
-                                                <form action="{{ route('restaurants.units.destroy', $unit->id) }}"
+                                                <form
+                                                    action="{{ route('restaurants.units.destroy', [currentRestaurant()->slug ?? uniqid(), $unit->id]) }}"
                                                     method="POST" id="delete-form-{{ $unit->id }}">
                                                     @csrf
                                                     @method('DELETE')

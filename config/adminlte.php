@@ -313,7 +313,8 @@ return [
         ],
         [
             'text'        => 'Dashboard',
-            'url'         => 'restaurants/dashboard',
+            'url'         => 'restaurants/dashboard/',
+            'route'         => 'restaurants.dashboard',
             'icon'        => 'fa-solid fa-gauge',
             // 'label'       => 4,
             'label_color' => 'success',
@@ -321,6 +322,7 @@ return [
         [
             'text'        => 'Units',
             'url'         => 'restaurants/units',
+            'route'         => 'restaurants.units.index',
             'icon'        => 'fa-brands fa-unity',
             // 'label'       => 4,
             'label_color' => 'success',
@@ -328,6 +330,7 @@ return [
         [
             'text'        => 'Item Categories',
             'url'         => 'restaurants/item-categories',
+            'route'         => 'restaurants.item-categories.index',
             'icon'        => 'fa-brands fa-product-hunt',
             // 'label'       => 4,
             'label_color' => 'success',
@@ -335,13 +338,23 @@ return [
         [
             'text'        => 'Items',
             'url'         => 'restaurants/items',
+            'route'         => 'restaurants.items.index',
             'icon'        => 'fa-solid fa-bowl-food',
+            // 'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Coupons',
+            'url'         => 'restaurants/coupons',
+            'route'         => 'restaurants.coupons.index',
+            'icon'        => 'fa-solid fa-tag',
             // 'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Online Orders',
             'url'         => 'restaurants/online-orders',
+            'route'         => 'restaurants.online-orders.index',
             'icon'        => 'fa-brands fa-jedi-order',
             // 'label'       => 4,
             'label_color' => 'success',
@@ -349,6 +362,7 @@ return [
         [
             'text'        => 'Tables',
             'url'         => 'restaurants/tables',
+            'route'         => 'restaurants.tables.index',
             'icon'        => 'fa fa-table',
             // 'label'       => 4,
             'label_color' => 'success',
@@ -356,6 +370,7 @@ return [
         [
             'text'        => 'Reports',
             'url'         => 'restaurants/reports',
+            'route'         => 'restaurants.reports.index',
             'icon'        => 'fa fa-bug',
             // 'label'       => 4,
             'label_color' => 'success',
@@ -363,6 +378,7 @@ return [
         [
             'text'        => 'POS',
             'url'         => 'restaurants/pos',
+            'route'         => 'restaurants.pos.index',
             'icon'        => 'fa-solid fa-circle-plus',
             // 'label'       => 4,
             'label_color' => 'success',
@@ -370,6 +386,7 @@ return [
         [
             'text'        => 'POS Orders',
             'url'         => 'restaurants/pos-orders',
+            'route'         => 'restaurants.pos-orders.index',
             'icon'        => 'fa-brands fa-first-order',
             // 'label'       => 4,
             'label_color' => 'success',
