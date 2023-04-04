@@ -50,6 +50,6 @@ trait Suscribable
 
         $esewa = new Client($config);
 
-        $esewa->process($suscription->id, $suscription->amount, 0, 0, 0);
+        $esewa->process('MM-SUSCRIBE-' . $suscription->id, $suscription->amount, 0, 0, 0);
     }
 }

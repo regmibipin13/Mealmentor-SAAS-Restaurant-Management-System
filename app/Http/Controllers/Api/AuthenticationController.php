@@ -19,7 +19,7 @@ class AuthenticationController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Credentials Do Not Matched']);
         }
         if (auth()->user()->user_type !== User::USER_TYPE['restaurant_owner']) {
-            return response()->json(['status' => 'error', 'message' => 'Credentials Do not Matched']);
+            return response()->json(['status' => 'error', 'message' => 'Only Restaurant Owner can login']);
         }
         $token = auth()->user()->createToken('API Token')->accessToken;
 

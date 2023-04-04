@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\MonthlyReport;
+use App\Listeners\MonthlyReportListener;
 use App\Models\Restaurant;
 use App\Observers\RestaurantObserver;
 use Illuminate\Auth\Events\Registered;

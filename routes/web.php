@@ -156,9 +156,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 
     Route::resource('packages', 'PackagesController');
 });
-
-Route::group(['as' => 'restaurants.', 'prefix' => 'restaurants/{slug}', 'namespace' => 'Restaurants', 'middleware' => ['is_restaurant']], function () {
+Route::post('resuscribe', 'Restaurants\DashboardController@resuscribe')->name('restaurants.resuscribe');
+Route::group(['as' => 'restaurants.', 'prefix' => '{slug}', 'namespace' => 'Restaurants', 'middleware' => ['is_restaurant']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
 
     // Units
     Route::resource('units', 'UnitsController');

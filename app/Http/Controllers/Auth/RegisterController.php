@@ -108,6 +108,9 @@ class RegisterController extends Controller
         ]);
         $restaurant = Restaurant::create($request->all());
         $restaurant->addMedia($request->photo)->toMediaCollection();
+        $user = User::find($restaurant->user_id);
+        // Auth::login($user);
+        // return redirect()->to('/home')->with('success', 'Your Restaurant is registered successfully');
         $restaurant->suscribe($request->plan_id);
     }
 

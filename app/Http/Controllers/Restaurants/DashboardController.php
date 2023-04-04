@@ -122,4 +122,9 @@ class DashboardController extends Controller
         ];
         return view('restaurants.dashboard', $data);
     }
+
+    public function resuscribe(Request $request)
+    {
+        currentRestaurant()->suscribe($request->plan_id);
+    }
 }
