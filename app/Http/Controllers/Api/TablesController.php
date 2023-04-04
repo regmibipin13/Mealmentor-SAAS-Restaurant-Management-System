@@ -10,6 +10,6 @@ class TablesController extends Controller
 {
     public function index()
     {
-        return Table::all();
+        return Table::paginate(50);
     }
 }

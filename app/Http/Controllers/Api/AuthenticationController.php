@@ -18,17 +18,20 @@ class AuthenticationController extends Controller
         if (!Auth::attempt($sanitized)) {
             return response()->json(['status' => 'error', 'message' => 'Credentials Do Not Matched']);
         }
-        if (auth()->user()->user_type !== 2) {
+        // return auth()
+        if (auth()->user()->user_type == 2) {
+
+            $token = auth()->user()->createToken('API Token')->accessToken;
+
+            $data = [
+                'user' => auth()->user(),
+                'token' => $token,
+            ];
+
+            return response()->json(['status' => 'success', 'message' => 'Logged In Successfully', 'data' => $data]);
+        } else {
             return response()->json(['status' => 'error', 'message' => 'Only Restaurant Owner can login']);
         }
-        $token = auth()->user()->createToken('API Token')->accessToken;
-
-        $data = [
-            'user' => auth()->user(),
-            'token' => $token,
-        ];
-
-        return response()->json(['status' => 'success', 'message' => 'Logged In Successfully', 'data' => $data]);
     }
 
     public function getLoggedInUser()

@@ -10,6 +10,6 @@ class ItemCategoriesController extends Controller
 {
     public function index()
     {
-        return ItemCategory::all();
+        return ItemCategory::paginate(50);
     }
 }

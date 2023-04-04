@@ -10,6 +10,6 @@ class UnitsController extends Controller
 {
     public function index()
     {
-        return Unit::all();
+        return Unit::paginate(50);
     }
 }
