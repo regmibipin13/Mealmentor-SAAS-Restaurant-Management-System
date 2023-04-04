@@ -55,7 +55,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
-                                    <td>{{ array_search($user->user_type, App\Models\User::USER_TYPE, true) }}</td>
+                                    <td>{{ array_search($user->user_type, App\Models\User::USER_TYPE) }}</td>
                                     <td>
                                         @foreach ($user->roles as $role)
                                             <span
