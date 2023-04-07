@@ -18,7 +18,7 @@
                             </div>
                             <div class="col-md-3">
                                 <form
-                                    action="{{ route('restaurants.tables.index'[currentRestaurant()->slug ?? uniqid()]) }}"
+                                    action="{{ route('restaurants.tables.index', [currentRestaurant()->slug ?? uniqid()]) }}"
                                     method="get">
                                     <input type="search" name="name" value="{{ request()->name }}"
                                         placeholder="table Name" class="form-control">

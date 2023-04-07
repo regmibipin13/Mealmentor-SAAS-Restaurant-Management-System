@@ -10,7 +10,6 @@
                     <div class="card-body">
                         <form action="{{ route('admin.item-categories.store') }}" method="POST">
                             @csrf
-
                             @include('admin.item-categories.form')
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
