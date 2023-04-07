@@ -12,7 +12,11 @@ class PosOrdersController extends Controller
 {
     public function index()
     {
-        return PosOrder::with(['table', 'orderable_items'])->orderBy('id', 'desc')->where('is_order_ended', 0)->paginate(20);
+        $data = [
+            'activeOrders' => PosOrder::with(['table', 'orderable_items'])->orderBy('id', 'desc')->where('is_order_ended', 0)->paginate(20),
+            'pastOrders' => PosOrder::with(['table', 'orderable_items'])->orderBy('id', 'desc')->where('is_order_ended', 1)->paginate(20),
+        ];
+        return $data;
     }
 
     public function store(Request $request)
