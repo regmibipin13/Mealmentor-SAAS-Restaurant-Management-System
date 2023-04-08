@@ -29,8 +29,8 @@ class PosOrdersDataTable extends DataTable
             })
             ->addColumn('action', function ($row) {
                 return generateActionButtons(
-                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.pos-orders.show', $row->id) : route('restaurants.pos-orders.show', $row->id),
-                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.pos-orders.destroy', $row->id) : route('restaurants.pos-orders.destroy', $row->id)
+                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.pos-orders.show', [currentRestaurant()->slug, $row->id]) : route('restaurants.pos-orders.show', [currentRestaurant()->slug, $row->id]),
+                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.pos-orders.destroy', [currentRestaurant()->slug, $row->id]) : route('restaurants.pos-orders.destroy', [currentRestaurant()->slug, $row->id])
                 );
             })
             ->setRowId('id');
