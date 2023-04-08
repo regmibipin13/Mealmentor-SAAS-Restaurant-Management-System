@@ -32,8 +32,8 @@ class OnlineOrdersDataTable extends DataTable
             })
             ->addColumn('action', function ($row) {
                 return generateActionButtons(
-                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.online-orders.show', $row->id) : route('restaurants.online-orders.show', $row->id),
-                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.online-orders.destroy', $row->id) : route('restaurants.online-orders.destroy', $row->id)
+                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.online-orders.show', [currentRestaurant()->slug, $row->id]) : route('restaurants.online-orders.show', [currentRestaurant()->slug, $row->id]),
+                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.online-orders.destroy', [currentRestaurant()->slug, $row->id]) : route('restaurants.online-orders.destroy', [currentRestaurant()->slug, $row->id])
                 );
             })
             ->rawColumns(['action', 'customer_name', 'customer_phone'])

@@ -13,7 +13,9 @@
                             <tr>
                                 <th>Order Status</th>
                                 <td>
-                                    <form action="{{ route('restaurants.pos-orders.update', $order->id) }}" method="POST">
+                                    <form
+                                        action="{{ route('restaurants.pos-orders.update', [currentRestaurant()->slug, $order->id]) }}"
+                                        method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <select name="order_status" id="order_status" class="form-control select2">
@@ -65,7 +67,7 @@
                                                 @if (!$order->is_order_ended)
                                                     <td>
                                                         <form
-                                                            action="{{ route('restaurants.pos-orders.remove_item', $order->id) }}"
+                                                            action="{{ route('restaurants.pos-orders.remove_item', [currentRestaurant()->slug, $order->id]) }}"
                                                             method="POST">
                                                             @csrf
                                                             <input type="hidden" name="item_id"
