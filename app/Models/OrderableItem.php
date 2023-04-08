@@ -11,8 +11,15 @@ class OrderableItem extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['item_name'];
+
     public function orderable()
     {
         return $this->morphTo();
+    }
+
+    public function getItemNameAttribute()
+    {
+        return Item::find($this->item_id);
     }
 }

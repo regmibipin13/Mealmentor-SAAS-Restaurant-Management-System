@@ -14,8 +14,8 @@ class PosOrdersController extends Controller
     public function index()
     {
         $data = [
-            'activeOrders' => PosOrder::with(['table', 'orderable_items', 'orderable_items.orderable'])->orderBy('id', 'desc')->where('is_order_ended', 0)->paginate(20),
-            'pastOrders' => PosOrder::with(['table', 'orderable_items', 'orderable_items.orderable'])->orderBy('id', 'desc')->where('is_order_ended', 1)->paginate(20),
+            'activeOrders' => PosOrder::with(['table', 'orderable_items'])->orderBy('id', 'desc')->where('is_order_ended', 0)->paginate(20),
+            'pastOrders' => PosOrder::with(['table', 'orderable_items'])->orderBy('id', 'desc')->where('is_order_ended', 1)->paginate(20),
         ];
         return $data;
     }
