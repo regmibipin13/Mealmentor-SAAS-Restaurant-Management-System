@@ -243,7 +243,7 @@ export default {
                 return;
             }
             this.cart.total = this.cartTotal;
-            axios.post(this.restaurant.slug + '/pos', this.cart)
+            axios.post('/pos', this.cart)
                 .then((response) => {
                     this.toast.success('Order Created Successfully');
                     this.cart = {
@@ -260,7 +260,7 @@ export default {
         },
         markComplete(index) {
             if (index >= 0) {
-                axios.patch('/restaurants/pos-orders/' + this.pendingOrders[index].id, {
+                axios.patch(this.restaurant.slug + '/pos-orders/' + this.pendingOrders[index].id, {
                     order_status: 'Completed',
                 }).then((response) => {
                     this.toast.success('Order Marked Completed Successfully');
