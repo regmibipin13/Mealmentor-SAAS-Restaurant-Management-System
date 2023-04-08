@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Item;
 use App\Models\OrderableItem;
 use App\Models\PosOrder;
 use Carbon\Carbon;
@@ -54,7 +55,6 @@ class PosOrdersController extends Controller
             ]);
             foreach ($request->items as $item) {
                 $orderableItems = new OrderableItem();
-                // $orderableItems->order_id = $order->id;
                 $orderableItems->item_id = $item['id'];
                 $orderableItems->quantity = $item['quantity'];
                 $orderableItems->price = $item['price'];

@@ -53,7 +53,6 @@ class ItemsController extends Controller
     public function store(StoreItemRequest $request)
     {
         $sanitized = $this->checkForBools($request->validated());
-
         $item = Item::create($sanitized);
         $item->addMedia($sanitized['photo'])->toMediaCollection();
         $item->photo = $item->media()->latest()->first()->getUrl();

@@ -24,6 +24,7 @@ Route::get('/user', 'AuthenticationController@getLoggedInUser');
 Route::get('/units', 'UnitsController@index');
 Route::get('/item-categories', 'ItemCategoriesController@index');
 Route::get('/items', 'ItemsController@index');
+Route::get('/tables', 'TablesController@index');
 
-Route::post('pos-orders/{posOrder}/items-remove','PosOrdersController@remove');
+Route::post('pos-orders/{posOrder}/items-remove', 'PosOrdersController@remove');
 Route::resource('pos-orders', 'PosOrdersController');
