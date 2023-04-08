@@ -243,7 +243,7 @@ export default {
                 return;
             }
             this.cart.total = this.cartTotal;
-            axios.post('/pos', this.cart)
+            axios.post('/' + this.restaurant.slug + '/pos', this.cart)
                 .then((response) => {
                     this.toast.success('Order Created Successfully');
                     this.cart = {
