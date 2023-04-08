@@ -154,7 +154,7 @@ import axios from 'axios';
 import { useToast } from "vue-toastification";
 export default {
     name: 'pos',
-    props: ['categories', 'tables'],
+    props: ['categories', 'tables', 'restaurant'],
     data: function () {
         return {
             search: {
@@ -183,7 +183,7 @@ export default {
     methods: {
         getItems() {
             var _this = this;
-            axios.get('/restaurants/pos', {
+            axios.get('/' + this.restaurant.slug + '/pos', {
                 params: this.search
             })
                 .then((response) => {
