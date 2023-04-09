@@ -22,11 +22,11 @@ class PosOrdersController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'items' => 'required',
-            'table_id' => 'required',
-            'total' => 'required',
-        ]);
+        // $request->validate([
+        //     'items' => 'required',
+        //     'table_id' => 'required',
+        //     'total' => 'required',
+        // ]);
 
         $order = PosOrder::with('orderable_items')->activeOrders()->where('table_id', $request->table_id)->first();
 
