@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\OrderableItem;
 use App\Models\PosOrder;
+use App\Models\Restaurant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,8 @@ class PosOrdersController extends Controller
     public function store(Request $request)
     {
         $order = PosOrder::with('orderable_items')->activeOrders()->where('table_id', $request->table_id)->first();
-        return currentRestaurant('api');
+
+        $restaurant = Restaurant::where('user_id', auth('api')->id())->first();
         if ($order !== null) {
             foreach ($request->items as $item) {
 
@@ -45,7 +47,7 @@ class PosOrdersController extends Controller
                 'order_status' => PosOrder::STATUS['created'],
                 'is_order_ended' => 0,
                 'total_amount' => $request->total,
-                'restaurant_id' => currentRestaurant('api')->id
+                'restaurant_id' => $restaurant->id
             ]);
             foreach ($request->items as $item) {
                 $orderableItems = new OrderableItem();
