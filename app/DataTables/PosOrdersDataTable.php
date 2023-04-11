@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\PosOrder;
+use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -24,13 +25,16 @@ class PosOrdersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addColumn('restaurant_name', function ($row) {
+                return Restaurant::find($row->restaurant_id)->name;
+            })
             ->addColumn('table', function ($row) {
                 return $row->table->name;
             })
             ->addColumn('action', function ($row) {
                 return generateActionButtons(
-                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.pos-orders.show', [currentRestaurant()->slug, $row->id]) : route('restaurants.pos-orders.show', [currentRestaurant()->slug, $row->id]),
-                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.pos-orders.destroy', [currentRestaurant()->slug, $row->id]) : route('restaurants.pos-orders.destroy', [currentRestaurant()->slug, $row->id])
+                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.pos-orders.show', [$row->id]) : route('restaurants.pos-orders.show', [currentRestaurant()->slug, $row->id]),
+                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.pos-orders.destroy', [$row->id]) : route('restaurants.pos-orders.destroy', [currentRestaurant()->slug, $row->id])
                 );
             })
             ->setRowId('id');
@@ -80,6 +84,7 @@ class PosOrdersDataTable extends DataTable
     {
         return [
             Column::make('id'),
+            Column::make('restaurant_name'),
             Column::make('table'),
             Column::make('total_amount'),
             Column::make('order_date'),

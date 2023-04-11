@@ -13,7 +13,9 @@
                             <tr>
                                 <th>Order Status</th>
                                 <td>
-                                    <form action="{{ route('restaurants.online-orders.update', $order->id) }}" method="POST">
+                                    <form
+                                        action="{{ route('restaurants.online-orders.update', [currentRestaurant()->slug, $order->id]) }}"
+                                        method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <select name="order_status" id="order_status" class="form-control select2">

@@ -9,18 +9,16 @@
                     </div>
                     <div class="card-body">
                         <div class="row mb-2">
-                            <div class="col-md-2">
+                            <div class="col-md-12">
                                 <a href="{{ route('admin.item-categories.create') }}" class="btn btn-success">Add
                                     New</a>
                             </div>
-                            <div class="col-md-7">
-
-                            </div>
-                            <div class="col-md-3">
-                                <form action="{{ route('admin.item-categories.index') }}" method="get">
-                                    <input type="search" name="name" value="{{ request()->name }}"
-                                        placeholder="Unit Name" class="form-control">
-                                </form>
+                            <div class="col-md-12">
+                                @include('admin.includes.filterable', [
+                                    'route' => route('admin.item-categories.index'),
+                                    'name' => 'name',
+                                    'placeholder' => 'Item Category Name',
+                                ])
                             </div>
                         </div>
                         <table class="table table-bordered table-hover">
@@ -28,6 +26,7 @@
                                 <tr>
                                     <th>#ID</th>
                                     <th>Name</th>
+                                    <th>Restaurant</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -37,11 +36,14 @@
                                         <tr>
                                             <td>{{ $item_category->id }}</td>
                                             <td>{{ $item_category->name }}</td>
+                                            <td>{{ $item_category->restaurant->name }}</td>
                                             <td>
                                                 <a href="{{ route('admin.item-categories.edit', $item_category->id) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
+                                                &nbsp;
                                                 <a href="#" class="btn btn-danger btn-sm delete-button"
                                                     onclick="document.getElementById('delete-form-{{ $item_category->id }}').submit();">Delete</a>
+                                                &nbsp;
                                                 <form
                                                     action="{{ route('admin.item-categories.destroy', $item_category->id) }}"
                                                     method="POST" id="delete-form-{{ $item_category->id }}">

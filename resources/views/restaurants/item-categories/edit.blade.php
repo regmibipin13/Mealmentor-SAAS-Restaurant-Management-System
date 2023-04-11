@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <form
                             action="{{ route('restaurants.item-categories.update', [currentRestaurant()->slug ?? uniqid(), $itemCategory->id]) }}"
-                            method="POST">
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
 

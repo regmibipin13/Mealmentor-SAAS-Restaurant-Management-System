@@ -24,16 +24,22 @@ class OnlineOrdersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addColumn('restaurant_name', function ($row) {
+                return $row->restaurant->name;
+            })
             ->addColumn('customer_name', function ($row) {
                 return $row->user->name;
             })
             ->addColumn('customer_phone', function ($row) {
                 return $row->user->phone;
             })
+            ->addColumn('payment_method', function ($row) {
+                return $row->payment_method;
+            })
             ->addColumn('action', function ($row) {
                 return generateActionButtons(
-                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.online-orders.show', [currentRestaurant()->slug, $row->id]) : route('restaurants.online-orders.show', [currentRestaurant()->slug, $row->id]),
-                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.online-orders.destroy', [currentRestaurant()->slug, $row->id]) : route('restaurants.online-orders.destroy', [currentRestaurant()->slug, $row->id])
+                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.online-orders.show', [$row->id]) : route('restaurants.online-orders.show', [currentRestaurant()->slug, $row->id]),
+                    auth()->user()->user_type == User::USER_TYPE['admin'] ?  route('admin.online-orders.destroy', [$row->id]) : route('restaurants.online-orders.destroy', [currentRestaurant()->slug, $row->id])
                 );
             })
             ->rawColumns(['action', 'customer_name', 'customer_phone'])
@@ -84,9 +90,11 @@ class OnlineOrdersDataTable extends DataTable
     {
         return [
             Column::make('id'),
+            Column::make('restaurant_name'),
             Column::make('customer_name'),
             Column::make('customer_phone'),
             Column::make('payable_amount'),
+            Column::make('payment_method'),
             Column::make('order_status'),
             Column::make('date'),
             Column::computed('action')

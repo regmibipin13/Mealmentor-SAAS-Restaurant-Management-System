@@ -41,8 +41,8 @@ class ItemCategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $sanitized = $request->validate(['name' => 'required | unique:item_categories']);
-        ItemCategory::create($sanitized);
+        $sanitized = $request->validate(['name' => 'required']);
+        $category = ItemCategory::create($sanitized);
         return redirect()->route('restaurants.item-categories.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'Category Created Successfully');
     }
 
@@ -80,6 +80,7 @@ class ItemCategoriesController extends Controller
     {
         $sanitized = $request->validate(['name' => 'required']);
         $itemCategory->update($sanitized);
+
         return redirect()->route('restaurants.item-categories.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'Category Updated Successfully');
     }
 

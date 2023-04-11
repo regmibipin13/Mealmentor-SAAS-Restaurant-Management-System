@@ -43,8 +43,10 @@
                                             <td>
                                                 <a href="{{ route('restaurants.item-categories.edit', [currentRestaurant()->slug ?? uniqid(), $item_category->id]) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
+                                                &nbsp;
                                                 <a href="#" class="btn btn-danger btn-sm delete-button"
                                                     onclick="document.getElementById('delete-form-{{ $item_category->id }}').submit();">Delete</a>
+                                                &nbsp;
                                                 <form
                                                     action="{{ route('restaurants.item-categories.destroy', [currentRestaurant()->slug ?? uniqid(), $item_category->id]) }}"
                                                     method="POST" id="delete-form-{{ $item_category->id }}">

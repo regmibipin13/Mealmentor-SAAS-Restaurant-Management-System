@@ -41,7 +41,7 @@ class TablesController extends Controller
      */
     public function store(Request $request)
     {
-        $sanitized = $request->validate(['name' => 'required | unique:tables']);
+        $sanitized = $request->validate(['name' => 'required']);
         Table::create($sanitized);
         return redirect()->route('restaurants.tables.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'Table Created Successfully');
     }

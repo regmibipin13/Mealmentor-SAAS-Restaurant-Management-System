@@ -5,7 +5,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        {{ $dataTable->table() }}
+                        <div class="table-responsive">
+                            {{ $dataTable->table() }}
+                        </div>
                     </div>
                 </div>
             </div>

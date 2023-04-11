@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <form
                             action="{{ route('restaurants.item-categories.store', [currentRestaurant()->slug ?? uniqid()]) }}"
-                            method="POST">
+                            method="POST" enctype="multipart/form-data">
                             @csrf
 
                             @include('restaurants.item-categories.form')

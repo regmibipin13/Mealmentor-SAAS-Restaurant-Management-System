@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\OnlineOrder;
 use App\Models\PosOrder;
 use Carbon\Carbon;
+use Hash;
 use Illuminate\Http\Request;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
@@ -121,5 +122,41 @@ class DashboardController extends Controller
             'chart5' => $pos_order_reports,
         ];
         return view('admin.dashboard', $data);
+    }
+    public function profileUpdatePage()
+    {
+        $restaurant = auth()->user();
+        return view('admin.profile', compact('restaurant'));
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'unique:users,email,' . auth()->id()],
+            'phone' => ['required', 'unique:users,phone,' . auth()->id(), 'digits:10'],
+        ]);
+        $restaurant = auth()->user();
+        $restaurant->update($request->all());
+        return redirect()->back()->with('success', 'Profile Updated Successfully');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $restaurant = auth()->user();
+        $request->validate([
+            'old_password' => ['required'],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        if (!Hash::check($request->old_password, $restaurant->password)) {
+            return redirect()->back()->with('error', 'Your Old Password is incorrect');
+        }
+
+        $restaurant->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with('success', 'Password Change Succesfully');
     }
 }

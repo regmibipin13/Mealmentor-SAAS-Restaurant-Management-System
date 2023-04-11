@@ -391,17 +391,13 @@ return [
             // 'label'       => 4,
             'label_color' => 'success',
         ],
-        // ['header' => 'account_settings'],
-        // [
-        //     'text' => 'profile',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
-        // [
-        //     'text' => 'change_password',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
+        ['header' => 'account_settings'],
+        [
+            'text' => 'profile',
+            'url'  => 'restaurants/profile',
+            'route' => 'restaurants.profile-update-page',
+            'icon' => 'fas fa-fw fa-user',
+        ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

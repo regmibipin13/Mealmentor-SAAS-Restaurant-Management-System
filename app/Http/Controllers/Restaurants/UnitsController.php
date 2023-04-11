@@ -41,7 +41,7 @@ class UnitsController extends Controller
      */
     public function store(Request $request)
     {
-        $sanitized = $request->validate(['name' => 'required | unique:units']);
+        $sanitized = $request->validate(['name' => 'required']);
         Unit::create($sanitized);
         return redirect()->route('restaurants.units.index', [currentRestaurant()->slug ?? uniqid()])->with('success', 'unit Created Successfully');
     }

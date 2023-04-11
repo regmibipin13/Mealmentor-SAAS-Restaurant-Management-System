@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Restaurants;
 use App\Http\Controllers\Controller;
 use App\Models\OnlineOrder;
 use App\Models\PosOrder;
+use App\Models\Restaurant;
 use Carbon\Carbon;
+use Hash;
 use Illuminate\Http\Request;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
@@ -123,8 +125,51 @@ class DashboardController extends Controller
         return view('restaurants.dashboard', $data);
     }
 
+    public function profileUpdatePage()
+    {
+        $restaurant = currentRestaurant();
+        return view('restaurants.profile', compact('restaurant'));
+    }
+
     public function resuscribe(Request $request)
     {
         currentRestaurant()->suscribe($request->plan_id);
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'unique:restaurants,email,' . currentRestaurant()->id],
+            'phone' => ['required', 'unique:restaurants,phone,' . currentRestaurant()->id, 'digits:10'],
+            'address' => ['required'],
+            'photo' => ['nullable'],
+        ]);
+        $restaurant = Restaurant::find(currentRestaurant()->id);
+        $restaurant->update($request->all());
+        if ($request->has('photo') && $request->photo !== null) {
+            $restaurant->clearMediaCollection();
+            $restaurant->addMedia($request->photo)->toMediaCollection();
+        }
+        return redirect()->back()->with('success', 'Profile Updated Successfully');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $restaurant = currentRestaurant();
+        $request->validate([
+            'old_password' => ['required'],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        if (!Hash::check($request->old_password, $restaurant->owner->password)) {
+            return redirect()->back()->with('error', 'Your Old Password is incorrect');
+        }
+
+        $restaurant->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with('success', 'Password Change Succesfully');
     }
 }

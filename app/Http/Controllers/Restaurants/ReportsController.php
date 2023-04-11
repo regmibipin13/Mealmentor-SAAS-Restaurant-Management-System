@@ -100,8 +100,6 @@ class ReportsController extends Controller
         ];
         $pos_order_reports = new LaravelChart($chart_options);
 
-
-
         $data = [
             'chart1' => $order_reports,
             'chart2' => $sales_report,

@@ -119,6 +119,7 @@ namespace App\Models{
  * @property-read \App\Models\ItemCategory $item_category
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
+ * @property-read \App\Models\Restaurant|null $restaurant
  * @property-read \App\Models\Unit $unit
  * @method static \Illuminate\Database\Eloquent\Builder|Item available()
  * @method static \Illuminate\Database\Eloquent\Builder|Item filters()
@@ -154,8 +155,12 @@ namespace App\Models{
  * @property int|null $restaurant_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $photo
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Item> $items
  * @property-read int|null $items_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read \App\Models\Restaurant|null $restaurant
  * @method static \Illuminate\Database\Eloquent\Builder|ItemCategory filters()
  * @method static \Illuminate\Database\Eloquent\Builder|ItemCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ItemCategory newQuery()
@@ -166,7 +171,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ItemCategory whereRestaurantId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ItemCategory whereUpdatedAt($value)
  */
-	class ItemCategory extends \Eloquent {}
+	class ItemCategory extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{
@@ -190,6 +195,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderableItem> $orderable_items
  * @property-read int|null $orderable_items_count
  * @property-read \App\Models\Payment|null $payment
+ * @property-read \App\Models\Restaurant|null $restaurant
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|OnlineOrder filters()
  * @method static \Illuminate\Database\Eloquent\Builder|OnlineOrder newModelQuery()
@@ -469,6 +475,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Item> $items
  * @property-read int|null $items_count
+ * @property-read \App\Models\Restaurant|null $restaurant
  * @method static \Illuminate\Database\Eloquent\Builder|Unit filters()
  * @method static \Illuminate\Database\Eloquent\Builder|Unit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Unit newQuery()

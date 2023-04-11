@@ -58,6 +58,12 @@
                                                 <button type="submit"
                                                     class="btn btn-danger btn-sm delete-button">Delete</button>
                                             </form>
+
+                                            <form action="{{ route('admin.restaurants.login', $restaurant->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-info">Login</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

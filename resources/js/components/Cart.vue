@@ -126,7 +126,7 @@ var apis = {
 import { useToast } from "vue-toastification";
 export default {
     name: 'Cart',
-    props: ['addresses'],
+    props: ['addresses', 'url'],
     data: function () {
         return {
             coupon: '',
@@ -263,8 +263,8 @@ export default {
                 tAmt: this.getTotalCart,
                 pid: orderId,
                 scd: "EPAYTEST",
-                su: "http://mealmentor.test/order-success?order_id=" + orderId,
-                fu: "http://mealmentor.test/order-failed?order_id=" + orderId
+                su: this.url + "/order-success?order_id=" + orderId,
+                fu: this.url + "/order-failed?order_id=" + orderId
             }
             var form = document.createElement("form");
             form.setAttribute("method", "POST");

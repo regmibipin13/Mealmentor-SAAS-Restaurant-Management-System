@@ -10,23 +10,23 @@
                                 <div class="col-md-12">
                                     <a href="{{ route('admin.coupons.create') }}" class="btn btn-success">Add New</a>
                                 </div>
-
-                                <div class="col-md-10 d-flex align-items-start justify-content-between filters-input">
-                                    <input type="text" name="name" value="{{ request()->name }}"
-                                        placeholder="Coupon Name" class="form-control">
-                                    &nbsp;
-
-                                    &nbsp;
-                                    <button type="submit" class="btn btn-secondary">Filter</button>
-                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            @include('admin.includes.filterable', [
+                                'name' => 'name',
+                                'placeholder' => 'Enter Coupon Name',
+                                'route' => route('admin.coupons.index'),
+                            ])
+                        </div>
                         <table class="table table-bordered table-hover datatable">
                             <thead>
                                 <tr>
                                     <th>#ID</th>
                                     <th>Name</th>
+                                    {{-- <th>Restaurant Name</th> --}}
                                     <th>Code</th>
                                     <th>Discount</th>
                                     <th>Valid From</th>
@@ -41,6 +41,7 @@
                                         <tr>
                                             <td>{{ $coupon->id }}</td>
                                             <td>{{ $coupon->name }}</td>
+                                            {{-- <td>{{ $coupon->restaurant->name }}</td> --}}
                                             <td>{{ $coupon->code }}</td>
                                             <td>{{ $coupon->discount_percentage }}</td>
                                             <td>{{ $coupon->valid_from }}</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
@@ -111,5 +112,12 @@ class RestaurantsController extends Controller
     {
         $restaurant->delete();
         return redirect()->back()->with('success', 'restaurant Deleted Successfully');
+    }
+
+    public function login(Restaurant $restaurant)
+    {
+        Auth::logout();
+        Auth::login($restaurant->owner);
+        return redirect()->route('restaurants.dashboard', $restaurant->slug);
     }
 }

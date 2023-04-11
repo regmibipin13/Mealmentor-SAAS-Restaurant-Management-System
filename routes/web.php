@@ -112,6 +112,10 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['is_admin']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
+    Route::get('/profile', 'DashboardController@profileUpdatePage')->name('profile-update-page');
+    Route::post('/profile', 'DashboardController@profileUpdate')->name('profile-update');
+    Route::post('/change-password', 'DashboardController@changePassword')->name('change-password');
+
     // Permissions
     Route::resource('permissions', 'PermissionsController');
 
@@ -122,6 +126,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('users', 'UsersController');
 
     // Users
+    Route::post('restaurants/{restaurant}/login', 'RestaurantsController@login')->name('restaurants.login');
     Route::resource('restaurants', 'RestaurantsController');
 
     // Units
@@ -160,7 +165,6 @@ Route::post('resuscribe', 'Restaurants\DashboardController@resuscribe')->name('r
 Route::group(['as' => 'restaurants.', 'prefix' => '{slug}', 'namespace' => 'Restaurants', 'middleware' => ['is_restaurant']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
-
     // Units
     Route::resource('units', 'UnitsController');
 
@@ -188,6 +192,9 @@ Route::group(['as' => 'restaurants.', 'prefix' => '{slug}', 'namespace' => 'Rest
     Route::resource('pos-orders', 'PosOrdersController');
 
     // Coupons
-
     Route::resource('coupons', 'CouponsController');
+
+    Route::get('/profile', 'DashboardController@profileUpdatePage')->name('profile-update-page');
+    Route::post('/profile', 'DashboardController@profileUpdate')->name('profile-update');
+    Route::post('/change-password', 'DashboardController@changePassword')->name('change-password');
 });

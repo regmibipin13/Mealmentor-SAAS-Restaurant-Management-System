@@ -46,10 +46,10 @@ class RestaurantObserver
      */
     public function updated(Restaurant $restaurant)
     {
-        $restaurantOwner = User::find($restaurant->user_id)->update([
+        User::find($restaurant->user_id)->update([
             'name' => $restaurant->name,
             'email' => $restaurant->email,
-            'password' => Hash::make(request()->password),
+            'password' => request()->password !== null ? Hash::make(request()->password) : $restaurant->owner->password,
             'phone' => $restaurant->phone,
             'user_type' => User::USER_TYPE['restaurant_owner'],
         ]);
