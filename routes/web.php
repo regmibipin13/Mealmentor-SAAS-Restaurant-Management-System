@@ -22,7 +22,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::post('/table-ordering/{restaurant}', 'PagesController@createPosOrder')->name('pos');
     Route::get('/table-qr/{table}', 'PagesController@tableQR')->name('tableQR');
 });
-Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => 'auth'], function () {
+Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', ], function () {
     Route::get('/cart', 'CartController@index')->name('carts.index');
     // Route::get('/cart-count', 'CartController@cartCount')->name('carts.count');
     Route::post('/add-cart', 'CartController@addToCart')->name('carts.add');
