@@ -16,9 +16,9 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::filter($request)->paginate(50);
         return view('frontend.pages.home', compact('restaurants'));
     }
 

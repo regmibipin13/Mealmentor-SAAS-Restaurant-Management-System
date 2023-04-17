@@ -91,21 +91,46 @@
                                         add.city
                                     }}</option>
                                 </select>
+                                <button class="btn btn-sm btn-success mt-2">Add New Address</button>
                             </div>
                             <div class="form-group mt-3">
                                 <label>Choose Payment Method</label>
 
-                                <div v-for="p in payment_methods" :key="p">
-                                    {{ p.toUpperCase() }} <input type="radio" :value="p" v-model="payment_method" />
+                                <div class="d-flex flex-column" v-for="p in payment_methods" :key="p">
+                                    <label class="radio">
+                                        <input type="radio" name="payment_method" :value="p" v-model="payment_method" />
+                                        <div class="d-flex justify-content-between"> <span>{{ p.toUpperCase() }}</span>
+                                            <span>Rs. {{ getTotalCart }}</span>
+                                        </div>
+                                    </label>
                                 </div>
+
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>Total: Rs. {{ getTotalCart + total_discount }} </p>
+                            <table class="table">
+                                <tr>
+                                    <th>Total (Without Discount)</th>
+                                    <td>Rs. {{ getTotalCart + total_discount }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Discount Percentage</th>
+                                    <td>{{ discount_percentage }} %</td>
+                                </tr>
+                                <tr>
+                                    <th>Discount</th>
+                                    <td>Rs. {{ total_discount }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Payable Total</th>
+                                    <td>Rs. {{ getTotalCart }}</td>
+                                </tr>
+                            </table>
+                            <!-- <p>Total: Rs. {{ getTotalCart + total_discount }} </p>
                             <p>Discount Percentage: {{ discount_percentage }} %
                             </p>
                             <p>Discount: Rs.{{ total_discount }}</p>
-                            <h3>Total: Rs. {{ getTotalCart }} </h3>
+                            <h3>Total: Rs. {{ getTotalCart }} </h3> -->
                             <button class="btn btn-success btn-block" @click="checkout()">Checkout</button>
                         </div>
                     </div>

@@ -257,7 +257,7 @@ namespace App\Models{
  * @property string $payment_method
  * @property string $payment_status
  * @property float $amount
- * @property mixed|null $response
+ * @property string|null $response
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $orderable
@@ -357,6 +357,7 @@ namespace App\Models{
  * @property-read \App\Models\User $owner
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Suscription> $suscriptions
  * @property-read int|null $suscriptions_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Restaurant filter($request)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant filters()
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|Restaurant newModelQuery()

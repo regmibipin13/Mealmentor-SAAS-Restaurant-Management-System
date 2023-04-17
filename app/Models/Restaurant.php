@@ -39,4 +39,13 @@ class Restaurant extends Model implements HasMedia
             ]
         ];
     }
+
+    public function scopeFilter($query, $request)
+    {
+        if ($request->has('restaurant')) {
+            $query->where('name', 'like', '%' . $request->restaurant . '%')
+                ->orWhere('address', 'like', '%' . $request->restaurant . '%');
+        }
+        return $query;
+    }
 }

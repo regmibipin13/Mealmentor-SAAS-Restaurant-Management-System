@@ -52,6 +52,7 @@
                                     <div class="col-md-6 d-flex align-items-center">
                                         <input type="text" class="form-control" value="+977" disabled
                                             style="width: 30%">
+                                        &nbsp;
                                         <input type="number" maxlength="10" minlength="10" class="form-control"
                                             placeholder="Enter 10 Digit Phone number" name="phone">
                                         @error('phone')

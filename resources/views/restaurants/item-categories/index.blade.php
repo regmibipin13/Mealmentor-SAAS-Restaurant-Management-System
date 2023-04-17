@@ -29,16 +29,16 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>#ID</th>
+                                    <th>#SN</th>
                                     <th>Name</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if (count($item_categories) > 0)
-                                    @foreach ($item_categories as $item_category)
+                                    @foreach ($item_categories as $key => $item_category)
                                         <tr>
-                                            <td>{{ $item_category->id }}</td>
+                                            <td>{{ $key + 1 }}</td>
                                             <td>{{ $item_category->name }}</td>
                                             <td>
                                                 <a href="{{ route('restaurants.item-categories.edit', [currentRestaurant()->slug ?? uniqid(), $item_category->id]) }}"

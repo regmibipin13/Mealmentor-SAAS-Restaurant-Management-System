@@ -83,8 +83,10 @@
     @enderror
 </div>
 <div class="form-group">
-    <img src="{{ isset($item) ? $item->photo : '' }}" alt="{{ isset($item) ? $item->photo : '' }}" width="70"
-        height="70">
+    @if (isset($item))
+        <img src="{{ isset($item) ? $item->photo : '' }}" alt="{{ isset($item) ? $item->photo : '' }}" width="70"
+            height="70">
+    @endif
     <label for="photo">Photo</label>
     <input type="file" name="photo" value="">
     @error('photo')

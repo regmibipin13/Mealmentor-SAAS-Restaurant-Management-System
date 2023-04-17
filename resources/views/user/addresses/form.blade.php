@@ -34,7 +34,7 @@
                                 <p class="text-danger">{{ $errors->first('name') }}</p>
                             @enderror
                         </div>
-
+                        <br />
                         <div class="form-group">
                             <label for="name">City</label>
                             <input type="text" class="form-control" placeholder="Enter City" name="city"
@@ -43,7 +43,7 @@
                                 <p class="text-danger">{{ $errors->first('city') }}</p>
                             @enderror
                         </div>
-
+                        <br />
                         <div class="form-group">
                             <label for="street">Street Address</label>
                             <input type="text" class="form-control" placeholder="Enter Street Address" name="street"
@@ -52,7 +52,7 @@
                                 <p class="text-danger">{{ $errors->first('street') }}</p>
                             @enderror
                         </div>
-
+                        <br />
                         <div class="form-group">
                             <label for="nearby_landmark">Nearby Landmark</label>
                             <input type="text" class="form-control" placeholder="Enter Nearby Landmark"
@@ -62,7 +62,7 @@
                                 <p class="text-danger">{{ $errors->first('nearby_landmark') }}</p>
                             @enderror
                         </div>
-
+                        <br />
                         <button class="btn btn-success" type="submit">Save</button>
                     </form>
                 </div>

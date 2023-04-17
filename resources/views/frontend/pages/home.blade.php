@@ -4,19 +4,15 @@
         <div class="container pt-4 pb-4">
             <div class="row align-items-center">
                 <div class="col-md-6 hero-text-box d-flex flex-column">
-                    <form action="{{ route('frontend.categories') }}" method="GET">
+                    <form action="{{ route('frontend.home') }}" method="GET">
                         <h1 class="hero-main-text">Order your Favorite Food with Mealmentor</h1>
                         <h3 class="text-secondary">So Fast, So Hot</h3>
                         <h4>Choose your favorite restaurant and order right now !</h4>
-                        <select name="restaurant_id" class="form-control hero-cat-select select2">
-                            <option value="">Select your Favorite Restaurant</option>
-                            @foreach ($restaurants as $r)
-                                <option value="{{ $r->id }}">{{ $r->name }}</option>
-                            @endforeach
-                        </select>
+                        <input type="search" class="form-control" name="restaurant"
+                            placeholder="Enter Restaurant Name, Location etc ." value="{{ request()->restaurant }}">
                         <div class="pt-3 pb-3">
-                            <button type="submit" class="bg-theme-button mm-button">CONTINUE
-                                ORDERING</a>
+                            <button type="submit" class="bg-theme-button mm-button">
+                                Search Restaurants</a>
                         </div>
                     </form>
                 </div>

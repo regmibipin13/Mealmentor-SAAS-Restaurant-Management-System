@@ -3,6 +3,51 @@
         'pointer-events': isLoading ? 'none' : ''
     }">
         <div class="row">
+
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        Items List
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="category">Category</label>
+                                <select v-model="search.item_category_id" class="form-control">
+                                    <option value="">Select Category</option>
+                                    <option :value="cat.id" v-for="cat in categories">{{ cat.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-8">
+                                <label for="name">Item Name</label>
+                                <input type="text" class="form-control col-md-8" v-model="search.name"
+                                    placeholder="Search Items">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" style="overflow-y: auto; height: 300px;" v-if="items.length > 0">
+                            <div class="col-md-4 col-6 mb-4" v-for="item in items">
+                                <div class="card" @click="addToCart(item)">
+                                    <img class="card-img-top" :src="item.photo" :alt="item.name" height="100">
+                                    <div class="card-body ">
+                                        <div>
+                                            <span class="mm-color-text mm-text-13 mm-text-bold">{{
+                                                item.name
+                                            }}</span>
+                                            <br>
+                                            <span class="mm-color-text">Rs. {{ item.price }} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" v-else>
+                            <span class="text-center">No Items</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-header">
@@ -62,53 +107,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        Items List
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label for="category">Category</label>
-                                <select v-model="search.item_category_id" class="form-control">
-                                    <option value="">Select Category</option>
-                                    <option :value="cat.id" v-for="cat in categories">{{ cat.name }}</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-8">
-                                <label for="name">Item Name</label>
-                                <input type="text" class="form-control col-md-8" v-model="search.name"
-                                    placeholder="Search Items">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row" style="overflow-y: auto; height: 300px;" v-if="items.length > 0">
-                            <div class="col-md-4 mb-4" v-for="item in items">
-                                <div class="card" @click="addToCart(item)">
-                                    <img class="card-img-top" :src="item.photo" :alt="item.name" height="200">
-                                    <div class="card-body ">
-                                        <div>
-                                            <span class="mm-color-text mm-text-13 mm-text-bold">{{
-                                                item.name
-                                            }}</span>
-                                            <br>
-                                            <span class="mm-color-text">Rs. {{ item.price }} /
-                                                {{ item.unit_value_of_price }}
-                                                {{ item.unit.name }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" v-else>
-                            <span class="text-center">No Items</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </template>
