@@ -4,7 +4,7 @@
     <style>
         .payment {
             border: 1px solid #f2f2f2;
-            height: 280px;
+            height: 300px;
             border-radius: 20px;
             background: #fff;
         }
@@ -72,7 +72,8 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis praesentium nulla ipsam
                                 unde laudantium doloremque alias quos sint aspernatur, labore illum laborum? Sapiente
                                 aliquam aliquid expedita odio tempore architecto reiciendis!</p>
-                            <a href="{{ route('frontend.home') }}">Go to Home</a>
+                            <a href="{{ route('frontend.home') }}">Go to Home</a>&nbsp;
+                            <a href="{{ route('frontend.online-orders.show', $order->id) }}">Order Detail</a>
                         </div>
 
                     </div>

@@ -313,6 +313,7 @@ namespace App\Models{
  * @property int|null $restaurant_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $grand_total
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderableItem> $orderable_items
  * @property-read int|null $orderable_items_count
  * @property-read \App\Models\Table|null $restaurant
@@ -423,6 +424,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Restaurant $restaurant
+ * @method static \Illuminate\Database\Eloquent\Builder|Suscription filters()
  * @method static \Illuminate\Database\Eloquent\Builder|Suscription newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Suscription newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Suscription query()
@@ -504,6 +506,7 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $restaurant_id
  * @property-read \App\Models\Cart|null $cart
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Client> $clients
  * @property-read int|null $clients_count
@@ -527,6 +530,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRestaurantId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserType($value)
  */

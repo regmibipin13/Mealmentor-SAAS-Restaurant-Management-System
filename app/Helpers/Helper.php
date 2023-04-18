@@ -8,7 +8,11 @@ function currentRestaurant($var = 'web')
 {
     if ($var == 'api') {
         if (auth('api')->check() && auth('api')->user()->user_type == User::USER_TYPE['restaurant_owner']) {
-            return Restaurant::where('user_id', auth('api')->id())->first();
+            $restaurant =  Restaurant::where('user_id', auth('api')->id())->first();
+            if (!$restaurant) {
+                $restaurant = Restaurant::find(auth()->user()->restaurant_id);
+            }
+            return $restaurant;
         } else {
             return null;
         }

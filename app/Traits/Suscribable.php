@@ -24,7 +24,7 @@ trait Suscribable
         }
     }
 
-    public function suscribe($planId)
+    public function suscribe($planId, $isAdmin = false)
     {
         $plan = SuscriptionPackages::$packages[$planId];
         $suscription = Suscription::create([
@@ -36,7 +36,16 @@ trait Suscribable
             'amount' => $plan['price'],
             'payment_method' => 'esewa',
         ]);
-        $this->pay($suscription);
+
+        if ($isAdmin) {
+            $suscription->update([
+                'payment_method' => 'admin',
+                'payment_ref_id' => auth()->id(),
+                'verified' => 1,
+            ]);
+        } else {
+            $this->pay($suscription);
+        }
     }
 
     public function pay($suscription)

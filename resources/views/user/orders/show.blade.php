@@ -3,6 +3,9 @@
     <div class="container pt-3 body-segment">
         <div class="row">
             <div class="col-md-12">
+                <div class="card-header">
+                    <a href="" class="btn btn-primary my-3">Print</a>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <table class="table table-bordered table-hover datatable">

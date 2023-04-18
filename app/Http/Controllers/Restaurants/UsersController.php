@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
+
+    public $defaultRole = User::USER_TYPE['restaurant_owner'];
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +21,8 @@ class UsersController extends Controller
     public function index()
     {
         abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $users = User::filters()->paginate(20);
-        return view('admin.users.index', compact('users'));
+        $users = User::where('restaurant_id', currentRestaurant()->id)->filters()->paginate(20);
+        return view('restaurants.users.index', compact('users'));
     }
 
     /**
@@ -32,7 +34,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $roles = Role::all();
-        return view('admin.users.create', compact('roles'));
+        return view('restaurants.users.create', compact('roles'));
     }
 
     /**
@@ -48,19 +50,15 @@ class UsersController extends Controller
             'email' => ['required', 'unique:users'],
             'phone' => ['required', 'unique:users', 'digits:10'],
             'password' => ['required'],
-            'type' => ['required'],
-            'restaurant_id' => ['required']
         ]);
 
-        if ($request->type == 'admin') {
-            $request->merge(['is_admin_side' => 1]);
-        } else {
-            $request->merge(['is_admin_side' => 0]);
-        }
+        $request->merge(['user_type' => $this->defaultRole]);
+        $request->merge(['is_admin_side' => 0]);
+        $request->merge(['restaurant_id' => currentRestaurant()->id]);
 
-        $user = User::create($request->except(['type', 'roles']));
+        $user = User::create($request->except(['roles']));
         $user->roles()->sync($request->roles);
-        return redirect()->to('/admin/users')->with('success', 'User Created Successfully');
+        return redirect()->route('restaurants.users.index', currentRestaurant()->slug ?? uniqid())->with('success', 'User Created Successfully');
     }
 
     /**
@@ -85,7 +83,7 @@ class UsersController extends Controller
         abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $user->load(['roles']);
         $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('restaurants.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -102,19 +100,15 @@ class UsersController extends Controller
             'email' => ['required',],
             'phone' => ['required'],
             'password' => ['nullable'],
-            'type' => ['required'],
-            'restaurant_id' => ['required']
         ]);
 
-        if ($request->type == 'admin') {
-            $request->merge(['is_admin_side' => 1]);
-        } else {
-            $request->merge(['is_admin_side' => 0]);
-        }
+        $request->merge(['user_type' => $this->defaultRole]);
+        $request->merge(['is_admin_side' => 0]);
+        $request->merge(['restaurant_id' => currentRestaurant()->id]);
 
-        $user->update($request->except(['type', 'roles']));
+        $user->update($request->except(['roles']));
         $user->roles()->sync($request->roles);
-        return redirect()->to('/admin/users')->with('success', 'User Updated Successfully');
+        return redirect()->route('restaurants.users.index', currentRestaurant()->slug ?? uniqid())->with('success', 'User Updated Successfully');
     }
 
     /**

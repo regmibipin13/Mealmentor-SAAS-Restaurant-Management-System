@@ -21,6 +21,10 @@ class PosOrder extends Model
         'completed' => 'Completed',
     ];
 
+    protected $appends = [
+        'grand_total'
+    ];
+
     public function table()
     {
         return $this->belongsTo(Table::class, 'table_id');
@@ -39,5 +43,18 @@ class PosOrder extends Model
     public function scopeActiveOrders($query)
     {
         return $query->where('is_order_ended', 0);
+    }
+
+    public function getGrandTotalAttribute()
+    {
+        $orders = OrderableItem::where('orderable_id', $this->getKey())->get();
+
+        $total = 0;
+
+        foreach ($orders as $order) {
+            $total = $total + (float)$order->price * (int)$order->quantity;
+        }
+
+        return $total;
     }
 }

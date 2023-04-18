@@ -398,6 +398,12 @@ return [
             'route' => 'restaurants.profile-update-page',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Users',
+            'url'  => 'restaurants/users',
+            'route' => 'restaurants.users.index',
+            'icon' => 'fas fa-fw fa-user',
+        ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

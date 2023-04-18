@@ -23,6 +23,7 @@ class RestaurantObserver
             'password' => Hash::make('password'),
             'phone' => $restaurant->phone,
             'user_type' => User::USER_TYPE['restaurant_owner'],
+            'restaurant_id' => $restaurant->id
         ]);
         $restaurantOwner->roles()->sync(collect(Role::all())->map->id->toArray());
         $restaurant->user_id = $restaurantOwner->id;
@@ -52,6 +53,7 @@ class RestaurantObserver
             'password' => request()->password !== null ? Hash::make(request()->password) : $restaurant->owner->password,
             'phone' => $restaurant->phone,
             'user_type' => User::USER_TYPE['restaurant_owner'],
+            'restaurant_id' => $restaurant->id
         ]);
     }
 

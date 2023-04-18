@@ -1,4 +1,3 @@
-@include('admin.includes.restaurant_form')
 <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
@@ -21,18 +20,6 @@
         value="{{ isset($user) ? $user->email : old('email') }}" placeholder="Enter the email of user">
     @error('email')
         <p class="text-danger">{{ $errors->first('email') }}</p>
-    @enderror
-</div>
-<div class="form-group">
-    <label for="type">Type</label>
-    <select name="type" id="type" class="form-control select2">
-        <option value="admin" {{ isset($user) ? ($user->is_admin_side ? 'selected' : '') : '' }}>
-            Admin Side</option>
-        <option value="customer" {{ isset($user) ? (!$user->is_admin_side ? 'selected' : '') : '' }}>
-            Customer</option>
-    </select>
-    @error('roles')
-        <p class="text-danger">{{ $errors->first('roles') }}</p>
     @enderror
 </div>
 <div class="form-group">

@@ -125,6 +125,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     // Users
     Route::resource('users', 'UsersController');
 
+    // Route
+    Route::post('suscriptions/{suscription}/renew', 'SuscriptionsController@renew')->name('suscriptions.renew');
+    Route::resource('suscriptions', 'SuscriptionsController');
+
     // Users
     Route::post('restaurants/{restaurant}/login', 'RestaurantsController@login')->name('restaurants.login');
     Route::resource('restaurants', 'RestaurantsController');
@@ -164,6 +168,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 Route::post('resuscribe', 'Restaurants\DashboardController@resuscribe')->name('restaurants.resuscribe');
 Route::group(['as' => 'restaurants.', 'prefix' => '{slug}', 'namespace' => 'Restaurants', 'middleware' => ['is_restaurant']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+    // Users
+    Route::resource('users', 'UsersController');
 
     // Units
     Route::resource('units', 'UnitsController');
