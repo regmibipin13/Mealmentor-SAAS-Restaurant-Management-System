@@ -84,7 +84,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <table class="table table-bordered">
+                        <table class="table">
                             <tr>
                                 <th>Total Price</th>
                                 <td>Rs.{{ cartTotal }}</td>
