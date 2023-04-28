@@ -57,10 +57,11 @@
                             <label for="nearby_landmark">Nearby Landmark</label>
                             <input type="text" class="form-control" placeholder="Enter Nearby Landmark"
                                 name="nearby_landmark"
-                                value="{{ isset($address) ? $address->nearby_landmark : old('nearby_landmark') }}">
+                                value="{{ isset($address) ? $address->nearby_landmark : old('nearby_landmark', '') }}">
                             @error('nearby_landmark')
                                 <p class="text-danger">{{ $errors->first('nearby_landmark') }}</p>
                             @enderror
+
                         </div>
                         <br />
                         <button class="btn btn-success" type="submit">Save</button>

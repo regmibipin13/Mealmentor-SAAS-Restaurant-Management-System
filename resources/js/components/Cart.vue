@@ -9,6 +9,7 @@
                 <hr>
             </div>
             <div class="col-md-8">
+                <ModalsContainer />
                 <div class="row">
                     <div class="col-md-12 pt-2 pb-3" v-for="(item, index) in cart.items" :key="index">
                         <div class="card">
@@ -91,7 +92,17 @@
                                         add.city
                                     }}</option>
                                 </select>
-                                <button class="btn btn-sm btn-success mt-2">Add New Address</button>
+                                <button class="btn btn-sm btn-success mt-2" type="button" data-toggle="modal"
+                                    data-target=".bd-example-modal-sm">Add New Address</button>
+
+                                <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+                                    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            ...
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group mt-3">
                                 <label>Choose Payment Method</label>
@@ -126,11 +137,6 @@
                                     <td>Rs. {{ getTotalCart }}</td>
                                 </tr>
                             </table>
-                            <!-- <p>Total: Rs. {{ getTotalCart + total_discount }} </p>
-                            <p>Discount Percentage: {{ discount_percentage }} %
-                            </p>
-                            <p>Discount: Rs.{{ total_discount }}</p>
-                            <h3>Total: Rs. {{ getTotalCart }} </h3> -->
                             <button class="btn btn-success btn-block" @click="checkout()">Checkout</button>
                         </div>
                     </div>
@@ -142,6 +148,8 @@
 
 <script>
 import axios from 'axios';
+import 'vue-final-modal/style.css'
+
 var apis = {
     getApi: '/cart',
     addApi: '/add-cart',

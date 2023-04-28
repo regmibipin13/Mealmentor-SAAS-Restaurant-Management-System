@@ -10,6 +10,8 @@ import "vue-toastification/dist/index.css";
 
 import 'laravel-datatables-vite';
 
+import { createVfm } from 'vue-final-modal'
+
 // Initializing the vue app
 const app = createApp({
     data() {
@@ -46,6 +48,8 @@ import axios from 'axios';
 app.use(Toast,{
     position:'bottom-right'
 });
+const vfm = createVfm()
+app.use(vfm);
 app.component('cart', Cart);
 app.component('add-to-cart', AddToCart);
 app.component('pos', Pos);
