@@ -1,66 +1,226 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+---
+id: kmfkj67d
+title: Mealmentor - Multivendor Restaurant Management Solution
+file_version: 1.1.3
+app_version: 1.12.5
+---
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Mealmentor can be installed through two ways
 
-## About Laravel
+1.  UI Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+2.  Manual Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# UI Installation:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Unzipping the Project:
 
-## Learning Laravel
+Unzip the main application file and place it in your root path of your domain or localhost
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Visit the url {appUrl}/install and you will see the following view
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<br/>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw%3D%3D%2F544321f8-1518-41a9-b6f4-70ea9adbcc15.png?alt=media&token=91a7110d-42ae-4939-9130-fb92fff11b28" style="width:'100%'"/></div>
 
-## Laravel Sponsors
+<br/>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Checking Requirements:
 
-### Premium Partners
+Click on Check Requirements to Continue Installation and you will see the following view
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+<br/>
 
-## Contributing
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw%3D%3D%2F7e53ca19-2e0d-4f8f-8649-2ca67e7134c0.png?alt=media&token=e3a3ab66-d39c-4ca9-a88f-1878a4bd6abe" style="width:'100%'"/></div>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<br/>
 
-## Code of Conduct
+Now it will check all the requirements of the project for your system . If all the requirements are fulfilled you can continue otherwise you can install the necessary requirements .
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<br/>
 
-## Security Vulnerabilities
+## Checking Permissions:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+After Installing Necessary requirements you can click on Check Permissions to check permission of your project in the system
 
-## License
+<br/>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw%3D%3D%2F47ace788-db50-4688-872a-7c6aaa373087.png?alt=media&token=c88357ff-1734-4f28-9fe8-2a837b63b7e5" style="width:'100%'"/></div>
+
+<br/>
+
+Make sure all the permissions are granted. If not granted you can use several methods to grant permissions
+
+## Environment Configuration:
+
+After granting permissions you can continue configuring the environment variables
+
+<br/>
+
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw%3D%3D%2F03b2c1ab-6633-4736-a2ac-f5f0b2103e8b.png?alt=media&token=c968b2c4-a6a8-462c-b824-db0a8b1de401" style="width:'100%'"/></div>
+
+<br/>
+
+You can either go for Form Wizard setup or classic text editor way for configuring the environment variables . As most of the users may not know technical way of doing things you can just go for form wizard setup
+
+<br/>
+
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw%3D%3D%2F837399b4-33fe-4a02-b1d1-db8d02e94f5b.png?alt=media&token=3d42122a-85bd-421c-a3bc-31d2644b454b" style="width:'100%'"/></div>
+
+<br/>
+
+Make sure to enter all valid data in the environment configuration .
+
+<br/>
+
+## Database Configuration:
+
+After Configuration of the environment, you can setup the database
+
+<br/>
+
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw%3D%3D%2Fd5637b77-a32e-4cf3-8a06-90f5bd8a8a8d.png?alt=media&token=d8eb686a-a002-46d7-b0c2-def6652baa4d" style="width:'100%'"/></div>
+
+<br/>
+
+Enter all the correct details of the database otherwise you have encountered various problems accessing the application
+
+<br/>
+
+## Application Details Configuration (Optional):
+
+After Configuring the database you can continue setting up the application
+
+<br/>
+
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw%3D%3D%2Fda9e13aa-4243-45e7-9248-9482abebaec9.png?alt=media&token=6a00a983-3a24-4c36-9641-573bb91442a5" style="width:'100%'"/></div>
+
+<br/>
+
+Here you can configure other necessary details like mail server details, pusher details etc.
+
+This is not so important configurations at all for the system to run if you are doing customizations in the application for broadcasting things and all you can configure pusher but you can just leave this things as it is
+
+<br/>
+
+## Finishing the Installation:
+
+Finally after all the configuration you can click on Install to finish your installation
+
+<br/>
+
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw%3D%3D%2Fb0ccbe7c-0233-4069-b44f-f8802a669210.png?alt=media&token=ad902867-eecd-4890-98e4-2201ea721d54" style="width:'100%'"/></div>
+
+<br/>
+
+After Finishing Installation you can just click on Exit and you will be redirected to the application
+
+<br/>
+
+# Manual Installation:
+
+<br/>
+
+## Unzipping the File:
+
+Unzip the main application file and place it in your localhost or cpanel .<br/>
+Now open terminal and navigate to the project path and follow other steps
+
+Note: Terminal may not be available in your server incase of shared host.You can contact your host provider for enabling the terminal or you can also use other third party tools like Termius also.
+
+## Updating the Dependencies:
+
+To install/update dependencies you can run the following command on the terminal:
+
+`composer update` OR `composer install`
+
+<br/>
+
+## Database Configuration:
+
+After updating the dependencies you can setup your database .
+
+Open .env file from your root application and change the necessary credentials<br/>
+
+<br/>
+
+Change the APP Settings and DB Settings according to your system
+<!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
+### 📄 .env.example
+```example
+1      APP_NAME=Laravel
+2      APP_ENV=local
+3      APP_KEY=
+4      APP_DEBUG=true
+5      APP_URL=http://localhost
+6      
+7      LOG_CHANNEL=stack
+8      LOG_DEPRECATIONS_CHANNEL=null
+9      LOG_LEVEL=debug
+10     
+11     DB_CONNECTION=mysql
+12     DB_HOST=127.0.0.1
+13     DB_PORT=3306
+14     DB_DATABASE=mealmentor
+15     DB_USERNAME=root
+16     DB_PASSWORD=
+```
+
+<br/>
+
+<br/>
+
+## Migrating the Database:
+
+After configuring the application details, now you can migrate the database
+
+To migrate database run:
+
+`php artisan` `migrate`<swm-token data-swm-token=":_ide_helper.php:14702:7:7:`        public static function migrate($destroy = false)`"/>
+
+<br/>
+
+You can also seed some fake data that will be inserted so that you have some sample data running:
+
+To seed the data run
+
+`php artisan db:seed`
+
+<br/>
+
+You can also do the following two steps in one you<br/>
+Run:
+
+`php artisan migrate --seed`
+
+<br/>
+
+## Generating the Application Key:
+
+To generate the application key run :
+
+`php artisan key:generate`
+
+<br/>
+
+## Ignoring the UI Installation:
+
+Although you have manually install the application but still `/install` url will be available in your application
+
+To disabled this just add the file `installed.txt` in your storage folder with = following content
+
+`Laravel Installer successfully INSTALLED on 2023/06/30 08:24:15am`
+
+Date can be changed accordingly.
+
+<br/>
+
+## Finishing the installation:
+
+Now you can visit your application url.
+
+<br/>
+
+<br/>
+
+This file was generated by Swimm. [Click here to view it in the app](https://app.swimm.io/repos/Z2l0aHViJTNBJTNBbWVhbG1lbnRvciUzQSUzQXJlZ21pYmlwaW4xMw==/docs/kmfkj67d).
